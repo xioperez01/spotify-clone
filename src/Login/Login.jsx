@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { accessUrl } from "./spotify";
+import { accessUrl } from "../spotify";
 
 export const Login = () => {
   return (
