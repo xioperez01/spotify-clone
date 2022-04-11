@@ -3,11 +3,9 @@ import {
   Box,
   List,
   ListItem,
-  ListItemIcon,
-  ListItemText,
   Divider,
-  ListItemAvatar,
   Avatar,
+  Typography,
 } from "@mui/material";
 import { BiLibrary, BiSearch } from "react-icons/bi";
 import { AiFillHome, AiFillPlusSquare } from "react-icons/ai";
@@ -23,31 +21,49 @@ export const Sidebar = () => {
     { title: "Canciones que te gustan", icon: <TiHeart size={18} /> },
   ];
   return (
-    <Box width="240px" height="100%" bgcolor="#000">
+    <Box width="240px" height="100%" bgcolor="#000" px={1} pt={2}>
       <img
         src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
-        alt="Spotify logo" width="150px"
+        alt="Spotify logo"
+        width="150px"
       />
       <List>
         {sidebarMenu.map((i, index) => (
-          <ListItem button key={i.title} sx={{ px: 2 }}>
-            {index > 3 ? (
-              <ListItemAvatar>
-                <Avatar
-                  alt={i.title}
-                  variant="square"
-                  sx={{ width: 24, height: 24, bgcolor: "white" }}
-                  color="secondary"
-                >
-                  <Icon color="primary" children={i.icon} />
-                </Avatar>
-              </ListItemAvatar>
+          <ListItem
+            button
+            key={i.title}
+            sx={{
+              px: 1,
+              mt: index === 3 ? 2 : 0,
+              color: "#A6A6A6",
+              ":hover": { color: "white" },
+            }}
+          >
+            {index === 4 ? (
+              <Avatar
+                alt={i.title}
+                variant="square"
+                sx={{
+                  width: 25,
+                  height: 25,
+                  background:
+                    "linear-gradient(135deg, rgba(51,12,170,1) 0%, rgba(127,149,154,1) 100%)",
+                }}
+              >
+                <Icon children={i.icon} sx={{ color: "#A6A6A6" }} />
+              </Avatar>
             ) : (
-              <ListItemIcon color="secondary">
-                <Icon color="secondary" children={i.icon} />
-              </ListItemIcon>
+              <Icon children={i.icon} sx={{ fontSize: "30px" }} />
             )}
-            <ListItemText sx={{ color: "white" }} primary={i.title} />
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              ml={2.5}
+              textOverflow="ellipsis"
+              noWrap
+            >
+              {i.title}
+            </Typography>
           </ListItem>
         ))}
       </List>
