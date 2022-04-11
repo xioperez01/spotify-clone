@@ -27,13 +27,13 @@ export const Sidebar = () => {
         alt="Spotify logo"
         width="150px"
       />
-      <List>
+      <List sx={{ pt: 0 }}>
         {sidebarMenu.map((i, index) => (
           <ListItem
             button
             key={i.title}
             sx={{
-              px: 1,
+              px: 2,
               mt: index === 3 ? 2 : 0,
               color: "#A6A6A6",
               ":hover": { color: "white" },
@@ -58,7 +58,7 @@ export const Sidebar = () => {
             <Typography
               variant="body2"
               fontWeight="bold"
-              ml={2.5}
+              ml={1.5}
               textOverflow="ellipsis"
               noWrap
             >
@@ -67,7 +67,7 @@ export const Sidebar = () => {
           </ListItem>
         ))}
       </List>
-      <Divider variant="middle" />
+      <Divider variant="middle" sx={{ mx: 2 }} />
     </Box>
   );
 };
