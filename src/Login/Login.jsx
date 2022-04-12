@@ -1,7 +1,6 @@
 import React from 'react';
 import { accessUrl } from '../spotify';
 import { Button } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
 
 export const Login = () => {
   return (
@@ -11,10 +10,10 @@ export const Login = () => {
         alt=""
       />
       <Button
-        colorScheme="green"
+        colorScheme="spotify"
         borderRadius="20px"
       >
-        <a href={accessUrl}>Login</a>
+        <a href={accessUrl}>Login with Spotify</a>
       </Button>
       
     </div>
