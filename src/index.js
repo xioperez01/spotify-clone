@@ -1,42 +1,37 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { DataLayer } from "./DataLayer";
-import reducer, { initialState } from "./reducer";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { DataLayer } from './DataLayer';
+import reducer, { initialState } from './reducer';
+import { ChakraProvider } from '@chakra-ui/provider';
+import { extendTheme } from '@chakra-ui/react';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: "#1DB954",
+const theme = extendTheme({
+  colors: {
+    green: {
+      900: '#1DB954',
     },
-    secondary: {
-      // This is green.A700 as hex.
-      main: "#11cb5f",
+    brand: {
+      900: '#1DB954', //main
+      800: '#11cb5f', // green
+      700: '#121212', //default
+      600: '#121212', //paper
     },
-    background: {
-      paper: "#121212",
-      default: "#121212",
-    }
   },
 });
 
 ReactDOM.render(
   <DataLayer initialState={initialState} reducer={reducer}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <ChakraProvider theme={theme}>
+      <App></App>
+    </ChakraProvider>
   </DataLayer>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
