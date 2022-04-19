@@ -8,7 +8,7 @@ import { Body } from "./Body";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token, user }, dispatch] = useDataLayerValue();
 
   React.useEffect(() => {
     const hash = getTokenFromResponse();
@@ -27,6 +27,13 @@ function App() {
         dispatch({
           type: "SET_USER",
           user: user,
+        });
+      });
+
+      spotify.getUserPlaylists(user?.id).then((playLists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playLists,
         });
       });
     }
