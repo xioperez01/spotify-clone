@@ -11,20 +11,25 @@ import {
   Square,
   Stack,
 } from "@chakra-ui/react";
-import { BiLibrary, BiSearch } from "react-icons/bi";
+import { BiLibrary } from "react-icons/bi";
+import { FiSearch } from "react-icons/fi";
 import { AiFillHome, AiFillPlusSquare } from "react-icons/ai";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { useDataLayerValue } from "../DataLayer";
 
-export const Sidebar = () => {
+export const Sidebar = ({ handleView }) => {
   const [{ playlists }] = useDataLayerValue();
 
   const sidebarMenu = [
-    { title: "Inicio", icon: AiFillHome },
-    { title: "Buscar", icon: BiSearch },
-    { title: "Tu biblioteca", icon: BiLibrary },
-    { title: "Crear lista", icon: AiFillPlusSquare },
-    { title: "Canciones que te gustan", icon: BsFillSuitHeartFill },
+    { title: "Inicio", label: "HOME", icon: AiFillHome },
+    { title: "Buscar", label: "SEARCH", icon: FiSearch },
+    { title: "Tu biblioteca", label: "LIBRARY", icon: BiLibrary },
+    { title: "Crear lista", label: "CREATE_LIST", icon: AiFillPlusSquare },
+    {
+      title: "Canciones que te gustan",
+      label: "YOU_LIKE",
+      icon: BsFillSuitHeartFill,
+    },
   ];
   return (
     <Box width="240px" height="100%" bgColor="black" px={5} py={4}>
@@ -49,6 +54,7 @@ export const Sidebar = () => {
               p={0}
               mt={index === 3 ? 7 : 1}
               transitionDuration="0.5s"
+              onClick={() => handleView(i.label)}
             >
               <HStack spacing={4} alignItems="center">
                 {index === 4 ? (
@@ -94,6 +100,7 @@ export const Sidebar = () => {
             p={0}
             transitionDuration="0.5s"
             size="xs"
+            onClick={() => handleView("")}
           >
             <Text fontSize="14px" maxW="155px" isTruncated>
               {l.name}
