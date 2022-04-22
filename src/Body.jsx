@@ -10,10 +10,12 @@ export const Body = () => {
     setView(newView);
   };
   return (
+    <>
     <Box maxWidth="100vw" height="100vh" p={0}>
       <Sidebar handleView={handleView} />
       <Topbar view={view} />
     </Box>
+    </>
   );
 };
 
