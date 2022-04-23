@@ -1,9 +1,8 @@
-import { Flex, HStack, Icon, Image, Link, Text } from '@chakra-ui/react';
+import { Flex, HStack, Icon, Image, Link } from '@chakra-ui/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import SpotifyWebApi from 'spotify-web-api-js';
-import Waveform from './AudioPlayer';
 import Player from './Player';
 
 const spotify = new SpotifyWebApi();
@@ -19,7 +18,7 @@ const Footer = ({ id, link }) => {
 
   useEffect(() => {
     getSong();
-  }, []);
+  });
 
   console.log('track: ', track);
   const [like, setLike] = useState(false);
@@ -78,7 +77,6 @@ const Footer = ({ id, link }) => {
             </HStack>
           </Flex>
           <Player url={link}></Player>
-          {/* <Waveform url={track.preview_url} />*/}
           <Flex>Flex right</Flex>
         </Flex>
       ) : (

@@ -1,21 +1,26 @@
-import { createTheme } from "@mui/material/styles";
+import { extendTheme } from "@chakra-ui/react";
 
-export const theme = createTheme({
-  palette: {
-    primary: {
-      // Green Spotify
-      main: "#1ED760",
+export const theme = extendTheme({
+  colors: {
+    spotify: {
+      DEFAULT: "#1DB954",
+      50: "#9EF0BB",
+      100: "#8CEDAE",
+      200: "#69E796",
+      300: "#46E27D",
+      400: "#23DC64",
+      500: "#1DB954",
+      600: "#15893E",
+      700: "#0E5828",
+      800: "#062812",
+      900: "#000000",
     },
-    secondary: {
-      // white spotify.
-      main: "#fff",
+    brand: {
+      900: "#1DB954", //main
+      800: "#11cb5f", // green
+      700: "#121212", //default
+      600: "#121212", //paper
     },
-    background: {
-      paper: "#121212",
-      default: "#121212",
-    },
-
-    divider: "rgb(40, 40, 40)",
   },
 });
 
