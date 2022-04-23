@@ -32,13 +32,20 @@ const Sidebar = ({ handleView }) => {
     },
   ];
   return (
-    <Box width="240px" height="calc(100% - 90px)" bgColor="black" px={0} py={4}>
-      <Flex direction="column" px={5} h="45%">
+    <Box
+      width="240px"
+      height="calc(100% - 90px)"
+      minH="500px"
+      bgColor="black"
+      px={0}
+      py={4}
+    >
+      <Flex direction="column" px={5} h="auto">
         <Img
           src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
           alt="Spotify logo"
           width="150px"
-          mb={5}
+          mb={1}
           ml={-2}
         />
         <Flex direction="column">
@@ -98,7 +105,7 @@ const Sidebar = ({ handleView }) => {
       <Stack
         spacing={2}
         overflowY="auto"
-        maxH="calc(100% - (24px  + 45%))"
+        maxH="calc(100% - (24px  + 311.27px))"
         px={5}
         pt={1}
       >
@@ -165,3 +172,4 @@ const Sidebar = ({ handleView }) => {
 };
 
 export default Sidebar;
+

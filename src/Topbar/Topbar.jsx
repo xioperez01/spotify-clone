@@ -66,7 +66,7 @@ const Topbar = ({ view }) => {
       w="calc(100% - 240px)"
       h="60px"
       bgColor="#121212"
-      position="fixed"
+      position="absolute"
       top={0}
       right={0}
       px={8}
