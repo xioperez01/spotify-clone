@@ -1,31 +1,69 @@
 .audioPlayer {
   --primary: #fff;
-  --secondary: #1db954;
+  --secondary: #D2CDCC;
+  --hover-color: #1db954;
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  width: 40vw;
   align-items: center;
   justify-content: center;
+}
+
+.audioControls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audioControlIcon{
+  border: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+.audioControlIcon:hover{
+  color: var(--primary);
+}
+
+.audioControlIcon:active{
+  color: var(--hover-color);
+}
+
+.arrowIcon{
+  opacity: 1;
+  width: 23px;
+  height: 23px;
+  font-size: 23px;
 }
 
 .playPause {
   border: none;
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
   color: var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 10px;
 }
 
 .soundItems {
   display: flex;
-  padding: 5px;
+  padding: 1px;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
 }
+
+
 
 .currentTime,
 .duration {
@@ -33,7 +71,6 @@
   margin: 6px 10px 0px 10px;
 }
 
-{/*#1DB954*/}
 .progressBar {
   --bar-bg: #D2CDCC;
   --seek-before-width: 0;
@@ -45,7 +82,7 @@
   background-color: var(--bar-bg);
   border-radius: 10px;
   position: relative;
-  width: 40vw;
+  width: 31.5vw;
   height: 5px;
   outline: none;
 }
