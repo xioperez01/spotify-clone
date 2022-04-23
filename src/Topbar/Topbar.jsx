@@ -27,7 +27,7 @@ import {
   MdOutlineClose,
 } from "react-icons/md";
 
-export const Topbar = ({ view }) => {
+const Topbar = ({ view }) => {
   const [{ user }] = useDataLayerValue();
 
   const [isOpen, setIsOpen] = React.useState(false);
@@ -210,3 +210,4 @@ export const Topbar = ({ view }) => {
   );
 };
 
+export default Topbar;

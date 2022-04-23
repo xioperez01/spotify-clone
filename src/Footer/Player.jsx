@@ -1,18 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './Player.css';
-import { BsPlayCircleFill } from 'react-icons/bs';
-import { BsPauseCircleFill } from 'react-icons/bs';
+import React, { useState, useRef, useEffect } from "react";
+import "./Styles/Player.css";
+import { BsPlayCircleFill } from "react-icons/bs";
+import { BsPauseCircleFill } from "react-icons/bs";
 
 const Player = (link) => {
-  // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  // references
-  const audioPlayer = useRef(); // reference our audio component
-  const progressBar = useRef(); // reference our progress bar
-  const animationRef = useRef(); // reference the animation
+  const audioPlayer = useRef();
+  const progressBar = useRef();
+  const animationRef = useRef();
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
@@ -53,7 +51,7 @@ const Player = (link) => {
 
   const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
-      '--seek-before-width',
+      "--seek-before-width",
       `${(progressBar.current.value / duration) * 100}%`
     );
     setCurrentTime(progressBar.current.value);
@@ -91,3 +89,4 @@ const Player = (link) => {
 };
 
 export default Player;
+
