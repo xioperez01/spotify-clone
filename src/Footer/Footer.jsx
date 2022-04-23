@@ -34,7 +34,7 @@ const Footer = ({ id, link }) => {
           bg="#282828"
           height="90px"
           w="100%"
-          position="fixed"
+          position="absolute"
           bottom="0"
           justify="space-between"
           align="center"

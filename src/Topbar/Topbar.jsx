@@ -65,11 +65,12 @@ const Topbar = ({ view }) => {
       justifyContent="space-between"
       w="calc(100% - 240px)"
       h="60px"
-      bgColor="#121212"
-      position="fixed"
+      bgColor="transparent"
+      position="absolute"
       top={0}
       right={0}
       px={8}
+      zIndex="1"
     >
       <HStack spacing={5}>
         <ButtonGroup color="white" spacing={5}>
