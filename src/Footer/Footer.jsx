@@ -45,7 +45,7 @@ const Footer = ({ id, link }) => {
           p="16px"
           zIndex="100"
         >
-          <Flex maxWidth="27vw">
+          <Flex maxWidth="27vw" overflow="hidden">
             <Image
               boxSize="56px"
               objectFit="cover"
@@ -53,14 +53,14 @@ const Footer = ({ id, link }) => {
               alt="Dan Abramov"
             />
             <Flex direction="column" pl="16px" justify="center">
-              <Link fontWeight="semibold" fontSize="sm" overflow="hidden">
+              <Link fontWeight="semibold" fontSize="sm" overflow="hidden" isTruncated maxW="15vw">
                 {track.name}
               </Link>
-              <Link fontSize="xs" color="#D2CDCC">
+              <Link fontSize="xs" color="#D2CDCC" isTruncated maxW="" >
                 {track.artists[0].name}
               </Link>
             </Flex>
-            <HStack onClick={handleClick} h="20px" margin="auto 16px">
+            <HStack onClick={handleClick} h="20px" margin="auto 16px" >
               {like ? (
                 <Icon
                   as={HiHeart}
