@@ -1,9 +1,9 @@
-import { Flex, HStack, Icon, Image, Link } from '@chakra-ui/react';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
-import SpotifyWebApi from 'spotify-web-api-js';
-import Player from './Player';
+import { Flex, HStack, Icon, Image, Link } from "@chakra-ui/react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import SpotifyWebApi from "spotify-web-api-js";
+import Player from "./Player";
 
 const spotify = new SpotifyWebApi();
 
@@ -18,9 +18,9 @@ const Footer = ({ id, link }) => {
 
   useEffect(() => {
     getSong();
-  });
+  }, []);
 
-  console.log('track: ', track);
+  console.log("track: ", track);
   const [like, setLike] = useState(false);
 
   const handleClick = () => {
@@ -71,7 +71,7 @@ const Footer = ({ id, link }) => {
                   justify="center"
                   boxSize={5}
                   color="#D2CDCC"
-                  _hover={{ color: '#fff' }}
+                  _hover={{ color: "#fff" }}
                 />
               )}
             </HStack>
@@ -87,3 +87,4 @@ const Footer = ({ id, link }) => {
 };
 
 export default Footer;
+
