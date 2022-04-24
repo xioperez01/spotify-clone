@@ -1,7 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./Styles/Player.css";
-import { BsPlayCircleFill } from "react-icons/bs";
-import { BsPauseCircleFill } from "react-icons/bs";
+import React, { useState, useRef, useEffect } from 'react';
+import './Styles/Player.css';
+import {
+  BsPlayCircleFill,
+  BsPauseCircleFill,
+  BsFillSkipStartFill,
+  BsFillSkipEndFill,
+  BsArrowRepeat,
+} from 'react-icons/bs';
+import { TiArrowShuffle } from 'react-icons/ti';
+import { Flex } from '@chakra-ui/react';
+
+
 
 const Player = (link) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,7 +22,7 @@ const Player = (link) => {
   const animationRef = useRef();
 
   useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
+    const seconds = Math.floor(audioPlayer.current.duration); //cannot read duration (undefined)
     setDuration(seconds);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
@@ -51,7 +60,7 @@ const Player = (link) => {
 
   const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
-      "--seek-before-width",
+      '--seek-before-width',
       `${(progressBar.current.value / duration) * 100}%`
     );
     setCurrentTime(progressBar.current.value);
@@ -60,10 +69,23 @@ const Player = (link) => {
   return (
     <div className="audioPlayer">
       <audio ref={audioPlayer} src={link.url} preload="metadata"></audio>
-      <button onClick={togglePlayPause} className="playPause">
-        {isPlaying ? <BsPauseCircleFill /> : <BsPlayCircleFill />}
-      </button>
-
+      <Flex className="audioControls">
+        <button className="audioControlIcon">
+          <TiArrowShuffle />
+        </button>
+        <button className="audioControlIcon arrowIcon">
+          <BsFillSkipStartFill />
+        </button>
+        <button onClick={togglePlayPause} className="playPause">
+          {isPlaying ? <BsPauseCircleFill /> : <BsPlayCircleFill />}
+        </button>
+        <button className="audioControlIcon arrowIcon">
+          <BsFillSkipEndFill />
+        </button>
+        <button className="audioControlIcon">
+          <BsArrowRepeat />
+        </button>
+      </Flex>
       <div className="soundItems">
         {/** Current time */}
         <div className="currentTime">{calculateTime(currentTime)}</div>
@@ -89,4 +111,3 @@ const Player = (link) => {
 };
 
 export default Player;
-
