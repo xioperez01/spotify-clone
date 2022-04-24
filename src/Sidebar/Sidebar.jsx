@@ -127,44 +127,6 @@ const Sidebar = ({ handleView }) => {
               {l.name}
             </Text>
           </Button>
-        ))}{" "}
-        {playlists?.items?.map((l) => (
-          <Button
-            variant="ghost-on-accent"
-            key={l.name}
-            justifyContent="start"
-            color="#A6A6A6"
-            _hover={{ color: "white" }}
-            colorScheme="whiteAlpha"
-            _focus={{ border: "none" }}
-            p={0}
-            transitionDuration="0.5s"
-            size="xs"
-            onClick={() => handleView("")}
-          >
-            <Text fontSize="14px" maxW="155px" isTruncated>
-              {l.name}
-            </Text>
-          </Button>
-        ))}
-        {playlists?.items?.map((l) => (
-          <Button
-            variant="ghost-on-accent"
-            key={l.name}
-            justifyContent="start"
-            color="#A6A6A6"
-            _hover={{ color: "white" }}
-            colorScheme="whiteAlpha"
-            _focus={{ border: "none" }}
-            p={0}
-            transitionDuration="0.5s"
-            size="xs"
-            onClick={() => handleView("")}
-          >
-            <Text fontSize="14px" maxW="155px" isTruncated>
-              {l.name}
-            </Text>
-          </Button>
         ))}
       </Stack>
     </Box>
