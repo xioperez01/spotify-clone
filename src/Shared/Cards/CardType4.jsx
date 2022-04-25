@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 
-const CardType3 = ({ item }) => {
+const CardType4 = ({ item }) => {
   return (
     <Flex
-      w="225px"
-      h="220px"
+      w="475px"
+      h="222px"
       bg={item?.color}
       borderRadius="lg"
       overflow="hidden"
@@ -14,19 +14,19 @@ const CardType3 = ({ item }) => {
       justify="space-between"
       _hover={{cursor: "pointer"}}
     >
-      <Text fontSize="2xl" color="white" fontWeight="bold"  m="15px" maxW="90%" lineHeight="1.2">
+      <Text fontSize="40px" color="white" fontWeight="bold"  m="15px" maxW="90%" lineHeight="1.2">
         {item?.title}
       </Text>
       <Image
         src={item?.images?.url}
         alt="image"
-        boxSize="100px"
+        boxSize="120px"
         transform="rotate(25deg)"
-        ml="145px"
+        ml="375px"
         mb="-5px"
       ></Image>
     </Flex>
   );
 };
 
-export default CardType3;
+export default CardType4;
