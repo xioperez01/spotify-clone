@@ -4,6 +4,8 @@ export const initialState = {
   playing: false,
   item: null,
   token: null,
+  featuredPlaylists: null,
+  recentlyPlaylists: [],
 };
 
 const reducer = (state, action) => {
@@ -22,6 +24,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+    case "SET_FEATUREDPLAYLISTS":
+      return {
+        ...state,
+        featuredPlaylists: action.featuredPlaylists,
+      };
+    case "SET_RECENTLY_PLAYLISTS":
+      return {
+        ...state,
+        recentlyPlaylists: [...new Set(action.recentlyPlaylists)],
       };
     default:
       return state;
