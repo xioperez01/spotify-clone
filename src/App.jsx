@@ -5,7 +5,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "./DataLayer";
 import Body from "./Body";
 
-const spotify = new SpotifyWebApi();
+export const spotify = new SpotifyWebApi();
 
 function App() {
   const [{ token }, dispatch] = useDataLayerValue();
@@ -36,6 +36,15 @@ function App() {
           playlists: playLists,
         });
       });
+
+      spotify
+        .getFeaturedPlaylists({ market: "CO", limit: 7 })
+        .then((featuredPlaylists) => {
+          dispatch({
+            type: "SET_FEATUREDPLAYLISTS",
+            featuredPlaylists: featuredPlaylists,
+          });
+        });
     }
   });
 
