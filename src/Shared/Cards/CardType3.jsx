@@ -13,6 +13,7 @@ const CardType3 = ({ item }) => {
       direction="column"
       justify="space-between"
       _hover={{cursor: "pointer"}}
+      position="relative"
     >
       <Text fontSize="2xl" color="white" fontWeight="bold"  m="15px" maxW="90%" lineHeight="1.2">
         {item?.title}
@@ -22,8 +23,9 @@ const CardType3 = ({ item }) => {
         alt="image"
         boxSize="100px"
         transform="rotate(25deg)"
-        ml="145px"
-        mb="-5px"
+        position="absolute"
+        top="125px"
+        left="140px"
       ></Image>
     </Flex>
   );
