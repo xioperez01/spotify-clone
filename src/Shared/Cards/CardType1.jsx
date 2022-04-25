@@ -39,7 +39,7 @@ const CardType1 = ({ item, onChangeColor }) => {
     >
       {item ? (
         <Image
-          src={item?.images[0].url}
+          src={item?.images[0]?.url}
           boxSize={{ base: "60px", lg: "80px" }}
           roundedLeft="md"
         />
@@ -65,7 +65,8 @@ const CardType1 = ({ item, onChangeColor }) => {
       >
         <Text
           fontWeight="bold"
-          w={{ base: "100%", md: isOpen ? "80%" : "100%" }}
+          maxW="calc(100% - 45px)"
+          noOfLines={2}
         >
           {item ? item.name : "Canciones que te gustan"}
         </Text>
@@ -74,7 +75,8 @@ const CardType1 = ({ item, onChangeColor }) => {
             as={BsPlayCircleFill}
             color="#1ED760"
             boxSize={{ base: "0", md: "45px" }}
-            shadow="md"
+            shadow="dark-lg"
+            rounded="full"
             _hover={{ boxSize: "48px" }}
           />
         </ScaleFade>

@@ -1,62 +1,69 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Flex,
-  Grid,
-  Heading,
   Text,
   Image,
   ScaleFade,
   Icon,
   useDisclosure,
-} from '@chakra-ui/react';
-import {BsPlayCircleFill} from 'react-icons/bs';
+  Circle,
+} from "@chakra-ui/react";
+import { BsPlayCircleFill } from "react-icons/bs";
 
 const CardType2 = ({ item }) => {
+  console.log(item);
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <>
       <Box
-        w="230px"
-        h="300px"
+        w="100%"
+        h="auto"
         bg="#181818"
         borderRadius="lg"
         overflow="hidden"
         align="center"
         p="15px"
         _hover={{
-          cursor: 'pointer',
-          background: '#282828',
-          transitionDuration: '0.6s',
-          transitionTimingFunction: 'ease-in-out',
+          cursor: "pointer",
+          background: "#282828",
+          transitionDuration: "0.6s",
+          transitionTimingFunction: "ease-in-out",
         }}
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
       >
-        <Image
-          src={item?.images[0].url}
-          alt="AlbumImage"
-          borderRadius="5px"
-          boxSize="190px"
-          align="center"
-        />
-        <ScaleFade initialScale={0.9} in={isOpen}>
-          <Icon
-            as={BsPlayCircleFill}
-            color="#1ED760"
-            boxSize="45px"
-            shadow="md"
-            position="absolute"
-            ml="40px"
-            mt="-50px"
-            bg="black"
-            borderRadius="50%"
-            _hover={{ transform: 'scale(1.1)' }}
+        <Box position="relative">
+          <Image
+            src={item?.images[0].url}
+            alt="AlbumImage"
+            borderRadius="5px"
+            boxSize="100%"
+            align="center"
           />
-        </ScaleFade>
+          <ScaleFade initialScale={0.9} in={isOpen}>
+            <Circle
+              bg="black"
+              boxSize="40px"
+              position="absolute"
+              right={2}
+              bottom={2}
+            >
+              <Icon
+                as={BsPlayCircleFill}
+                color="#1ED760"
+                borderColor="#1ED760"
+                boxSize="45px"
+                shadow="dark-lg"
+                rounded="full"
+                _hover={{ transform: "scale(1.1)", transitionDuration: "0.3s" }}
+              />
+            </Circle>
+          </ScaleFade>
+        </Box>
 
-        <Flex direction="column" align="flex-start" mt="5">
+        <Flex direction="column" align="flex-start" mt="5" w="100%">
           <Text
             fontSize="md"
             fontWeight="bold"
@@ -75,7 +82,9 @@ const CardType2 = ({ item }) => {
             isTruncated
             maxW="100%"
           >
-            De {item?.owner?.display_name}
+            {!item.description || item?.description === ""
+              ? `De ${item?.owner?.display_name}`
+              : item?.description}
           </Text>
         </Flex>
       </Box>
@@ -84,3 +93,4 @@ const CardType2 = ({ item }) => {
 };
 
 export default CardType2;
+
