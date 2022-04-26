@@ -4,10 +4,13 @@ import { getTokenFromResponse } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "./DataLayer";
 import Body from "./Body";
+import { BrowserRouter } from "react-router-dom";
+import { DataLayer } from "./DataLayer";
+import reducer, { initialState } from "./reducer";
 
 export const spotify = new SpotifyWebApi();
 
-function App() {
+const RequireLoggedInUser = ({ children }) => {
   const [{ token }, dispatch] = useDataLayerValue();
 
   React.useEffect(() => {
@@ -48,7 +51,19 @@ function App() {
     }
   });
 
-  return <div>{token ? <Body /> : <Login />}</div>;
+  return !token ? <Login /> : children;
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <DataLayer initialState={initialState} reducer={reducer}>
+        <RequireLoggedInUser>
+          <Body />
+        </RequireLoggedInUser>
+      </DataLayer>
+    </BrowserRouter>
+  );
 }
 
 export default App;

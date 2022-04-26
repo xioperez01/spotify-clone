@@ -1,14 +1,13 @@
-
-import { Flex, Grid, HStack, Icon, Image, Link } from '@chakra-ui/react';
-import React, { useState, useRef, useEffect } from 'react';
-import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
-import { IoMdMicrophone } from 'react-icons/io';
-import { BsList, BsArrowsAngleExpand } from 'react-icons/bs';
-import { MdDevices } from 'react-icons/md';
-import { BiVolumeLow } from 'react-icons/bi';
-import SpotifyWebApi from 'spotify-web-api-js';
-import Player from './Player';
-import './Styles/Footer.css'
+import { Flex, Grid, HStack, Icon, Image, Link } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import { IoMdMicrophone } from "react-icons/io";
+import { BsList, BsArrowsAngleExpand } from "react-icons/bs";
+import { MdDevices } from "react-icons/md";
+import { BiVolumeLow } from "react-icons/bi";
+import SpotifyWebApi from "spotify-web-api-js";
+import Player from "./Player";
+import "./Styles/Footer.css";
 
 const spotify = new SpotifyWebApi();
 
@@ -53,14 +52,20 @@ const Footer = ({ id, link }) => {
               alt="Dan Abramov"
             />
             <Flex direction="column" pl="16px" justify="center">
-              <Link fontWeight="semibold" fontSize="sm" overflow="hidden" isTruncated maxW="15vw">
+              <Link
+                fontWeight="semibold"
+                fontSize="sm"
+                overflow="hidden"
+                isTruncated
+                maxW="15vw"
+              >
                 {track.name}
               </Link>
-              <Link fontSize="xs" color="#D2CDCC" isTruncated maxW="" >
+              <Link fontSize="xs" color="#D2CDCC" isTruncated maxW="">
                 {track.artists[0].name}
               </Link>
             </Flex>
-            <HStack onClick={handleClick} h="20px" margin="auto 16px" >
+            <HStack onClick={handleClick} h="20px" margin="auto 16px">
               {like ? (
                 <Icon
                   as={HiHeart}
@@ -114,7 +119,7 @@ const Footer = ({ id, link }) => {
               mr="5px"
             ></Icon>
             <div w="10vw" h="5px">
-              <input type="range" className='volumeBar'></input>
+              <input type="range" className="volumeBar"></input>
             </div>
             <Icon
               as={BsArrowsAngleExpand}

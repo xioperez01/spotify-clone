@@ -12,7 +12,6 @@ import {
 import { BsPlayCircleFill } from "react-icons/bs";
 
 const CardType2 = ({ item }) => {
-  console.log(item);
   const { isOpen, onToggle } = useDisclosure();
 
   return (
