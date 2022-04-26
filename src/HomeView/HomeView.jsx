@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -11,12 +11,15 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import { useDataLayerValue } from "../DataLayer";
-import CardType1 from "../Shared/Cards/CardType1";
-import { colorGenerate } from "../Shared/Functions/changeBgColor";
-import CardType2 from "../Shared/Cards/CardType2";
-import { spotify } from "../App";
+} from '@chakra-ui/react';
+import { useDataLayerValue } from '../DataLayer';
+import CardType1 from '../Shared/Cards/CardType1';
+import { colorGenerate } from '../Shared/Functions/changeBgColor';
+import CardType2 from '../Shared/Cards/CardType2';
+import { spotify } from '../App';
+import CardType3 from '../Shared/Cards/CardType3';
+import CardType4 from '../Shared/Cards/CardType4';
+import BigCard from '../Shared/Cards/BigCard';
 
 const HomeView = () => {
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
@@ -24,7 +27,7 @@ const HomeView = () => {
   const [newMusic, setNewMusic] = useState({});
   const [idsList] = useState([]);
 
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState('');
 
   const fivePlaylists = playlists?.items?.sort(
     (a, b) => b?.tracks?.total - a?.tracks?.total
@@ -32,7 +35,7 @@ const HomeView = () => {
 
   useEffect(() => {
     spotify
-      .getNewReleases({ market: "CO", limit: 10 })
+      .getNewReleases({ market: 'CO', limit: 10 })
       .then((data) => setNewMusic(data.albums));
 
     spotify
@@ -43,7 +46,7 @@ const HomeView = () => {
       .then((data) => {
         const list = data.items
           .filter((i) => i.context)
-          .map((l) => l.context.href.split("/")[5]);
+          .map((l) => l.context.href.split('/')[5]);
 
         return [...new Set(list)];
       })
@@ -52,7 +55,7 @@ const HomeView = () => {
           spotify.getPlaylist(l).then((recentlyPlaylists) => {
             idsList.push({ ...recentlyPlaylists });
             dispatch({
-              type: "SET_RECENTLY_PLAYLISTS",
+              type: 'SET_RECENTLY_PLAYLISTS',
               recentlyPlaylists: idsList,
             });
           })
@@ -69,8 +72,33 @@ const HomeView = () => {
     md: 3,
     lg: 4,
     xl: 5,
-    "2xl": 7,
+    '2xl': 7,
   });
+
+
+
+  const card3 = {
+    title: 'Pop',
+    images: {
+      url: 'https://media.istockphoto.com/photos/cup-of-espresso-next-to-a-vinyl-record-picture-id1319716944?b=1&k=20&m=1319716944&s=170667a&w=0&h=_HGc7tyHn-KPUtYfMPxAg-QaDNlLAmyOdtuHH5X0ok4=',
+    },
+    color: '#A45FDA',
+  };
+
+  const bigCardLists = {
+    artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles",
+    num: 50,
+    title: "Canciones que te gustan",
+    description: "canciones que te gustan",
+    color: "",
+  }
+  const bigCardPodcasts = {
+    artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles",
+    num: 10,
+    title: "Tus episodios",
+    description: "episodios",
+    color: "",
+  }
 
   const currentHour = new Date();
   return (
@@ -95,17 +123,18 @@ const HomeView = () => {
       >
         <Heading color="white" fontSize="32px">
           {currentHour <= 12
-            ? "¡Buenos días!"
+            ? '¡Buenos días!'
             : currentHour.getHours() > 12 && currentHour.getHours() <= 18
-            ? "¡Buenas tardes!"
-            : "¡Buenas noches!"}
+            ? '¡Buenas tardes!'
+            : '¡Buenas noches!'}
         </Heading>
+
         <Grid
           w="100%"
           h="auto"
           mt={6}
-          templateColumns={{ base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-          templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
+          templateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+          templateRows={{ base: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
           gap={4}
         >
           <GridItem>
@@ -203,9 +232,51 @@ const HomeView = () => {
           )}
         </SimpleGrid>
       </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Tus géneros más escuchados</Heading>
+          </Box>
+        </Flex>
+        <SimpleGrid columns={itemsToDisplay} gap={4}>
+          <CardType4 item={card3} />
+        </SimpleGrid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Explorar todo</Heading>
+          </Box>
+        </Flex>
+        <SimpleGrid columns={itemsToDisplay} gap={4}>
+          <CardType3 item={card3} />
+        </SimpleGrid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Big cards</Heading>
+          </Box>
+        </Flex>
+        <SimpleGrid columns={itemsToDisplay} gap={2}>
+          <BigCard item={bigCardLists} />
+          <BigCard item={bigCardPodcasts} />
+        </SimpleGrid>
+      </Box>
     </Stack>
   );
 };
 
 export default HomeView;
-
