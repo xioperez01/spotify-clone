@@ -51,6 +51,10 @@ const RequireLoggedInUser = ({ children }) => {
       spotify.getMySavedTracks().then((data) => {
         dispatch({ type: "SAVED_TRACKS", savedTracks: data });
       });
+
+      spotify.getMySavedShows().then((data) => {
+        dispatch({ type: "SAVED_SHOWS", savedShows: data });
+      });
     }
   });
 

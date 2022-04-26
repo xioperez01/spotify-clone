@@ -7,8 +7,9 @@ import HomeView from "./HomeView/HomeView";
 import { Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
-import LibraryView from "./LibraryView/LibraryView";
+import PlaylistsView from "./LibraryView/LibraryView";
 import SearchView from "./SearchView/SearchView";
+import PodcastsView from "./LibraryView/PodcastsView";
 
 const Body = () => {
   return (
@@ -24,7 +25,10 @@ const Body = () => {
           <HomeView />
         </Route>
         <Route exact path="/library/playlists">
-          <LibraryView />
+          <PlaylistsView />
+        </Route>
+        <Route exact path="/library/podcasts">
+          <PodcastsView />
         </Route>
         <Route exact path="/search">
           <SearchView />

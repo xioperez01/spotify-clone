@@ -4,14 +4,8 @@ import { useDataLayerValue } from "../DataLayer";
 import CardType2 from "../Shared/Cards/CardType2";
 import BigCard from "../Shared/Cards/BigCard";
 
-const PlaylistsView = () => {
-  const [{ playlists, savedTracks }] = useDataLayerValue();
-
-  const description = savedTracks?.items
-    ?.slice(0, 8)
-    .map((t) => `${t.track.artists[0].name} ${t.track.name}`)
-    .join(" * ");
-
+const PodcastsView = () => {
+  const [{ savedShows }] = useDataLayerValue();
   return (
     <Stack
       w="calc(100% - 240px)"
@@ -29,7 +23,7 @@ const PlaylistsView = () => {
       px={{ base: 4, lg: 8 }}
     >
       <Heading color="white" fontSize="25px">
-        Listas
+        Podcasts
       </Heading>
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4, xl: 5, "2xl": 7 }}
@@ -37,20 +31,18 @@ const PlaylistsView = () => {
       >
         <GridItem colStart={1} colEnd={3} rowSpan={1}>
           <BigCard
-            title="Canciones que te gustan"
-            description={description}
-            total={savedTracks?.total}
-            color="linear-gradient(135deg, rgba(65,1,244,1) -50%, rgba(99,63,236,1) 40%, rgba(187,227,216,1) 150%)"
+            title="Tus Episodios"
+            total={0}
+            color="linear-gradient(135deg, rgba(65,1,244,1) -50%, rgba(0,100,78,1) 0%, rgba(9,107,84,1) 50%, rgba(38,132,105,1) 100%)"
           />
         </GridItem>
 
-        {playlists?.items?.map((i) => (
+        {savedShows?.items?.map((i) => (
           <CardType2
-            key={i?.id}
-            title={i?.name}
-            image={i?.images[0]?.url}
-            description={i?.description}
-            owner={i?.owner?.display_name}
+            key={i?.show?.id}
+            title={i?.show?.name}
+            image={i?.show?.images[0]?.url}
+            owner={i?.show?.publisher}
           />
         ))}
       </SimpleGrid>
@@ -58,5 +50,5 @@ const PlaylistsView = () => {
   );
 };
 
-export default PlaylistsView;
+export default PodcastsView;
 

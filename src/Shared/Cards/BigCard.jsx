@@ -33,16 +33,20 @@ const BigCard = ({ description, title, total, color }) => {
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
       >
-        <Text
-          fontSize="md"
-          ml="10px"
-          mb="30px"
-          fontWeight="semibold"
-          maxH="120px"
-          overflow="hidden"
-        >
-          {description}
-        </Text>
+        {description ? (
+          <Text
+            fontSize="md"
+            ml="10px"
+            mb="30px"
+            fontWeight="semibold"
+            maxH="120px"
+            overflow="hidden"
+          >
+            {description}
+          </Text>
+        ) : (
+          <></>
+        )}
         <Text fontSize="3xl" fontWeight="bold" ml="10px">
           {title}
         </Text>

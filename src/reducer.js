@@ -9,6 +9,7 @@ export const initialState = {
   topCategories: [],
   allCategories: null,
   savedTracks: null,
+  savedShows: null,
 };
 
 const reducer = (state, action) => {
@@ -52,6 +53,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         savedTracks: action.savedTracks,
+      };
+    case "SAVED_SHOWS":
+      return {
+        ...state,
+        savedShows: action.savedShows,
       };
     default:
       return state;

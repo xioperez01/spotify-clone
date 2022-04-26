@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
 
-const CardType2 = ({ item }) => {
+const CardType2 = ({ image, title, description, owner }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -35,7 +35,7 @@ const CardType2 = ({ item }) => {
       >
         <Box position="relative">
           <Image
-            src={item?.images[0].url}
+            src={image}
             alt="AlbumImage"
             borderRadius="5px"
             boxSize="100%"
@@ -70,7 +70,7 @@ const CardType2 = ({ item }) => {
             isTruncated
             maxW="100%"
           >
-            {item?.name}
+            {title}
           </Text>
           <Text
             fontSize="sm"
@@ -81,9 +81,7 @@ const CardType2 = ({ item }) => {
             isTruncated
             maxW="100%"
           >
-            {!item.description || item?.description === ""
-              ? `De ${item?.owner?.display_name}`
-              : item?.description}
+            {description ? description : `De ${owner}`}
           </Text>
         </Flex>
       </Box>
