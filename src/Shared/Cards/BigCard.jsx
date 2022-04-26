@@ -9,25 +9,34 @@ import {
 } from '@chakra-ui/react';
 import { BsPlayCircleFill } from 'react-icons/bs';
 
-
-
 const bigCardLists = {
-  artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles y mucha mas musica que me gusta",
+  artists:
+    'BTSCarbon Fiber Music Hard Lights Sonora Carruseles y mucha mas musica que me gusta',
   num: 50,
-  title: "Canciones que te gustan",
-  description: "canciones que te gustan",
-  color: "#3940E7",
-}
+  title: 'Canciones que te gustan',
+  description: 'canciones que te gustan',
+  color: '#3940E7',
+};
 const bigCardPodcasts = {
-  artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles",
+  artists: 'BTSCarbon Fiber Music Hard Lights Sonora Carruseles',
   num: 10,
-  title: "Tus episodios",
-  description: "episodios",
-  gradient: "linear-gradient(149deg, rgba(58,77,180,1) 0%, rgba(122,29,253,1) 47%, rgba(69,233,252,1) 100%)",
-  color:"#4DCA78"
-}
+  title: 'Tus episodios',
+  description: 'episodios',
+  gradient:
+    'linear-gradient(149deg, rgba(58,77,180,1) 0%, rgba(122,29,253,1) 47%, rgba(69,233,252,1) 100%)',
+  color: '#4DCA78',
+};
 
 const BigCard = ({ item }) => {
+  {
+    /**
+     * Prameters:
+     * item.artist = str
+     * item.num = num
+     * item.title = str
+     * item.description = str 
+     * */
+  }
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -74,7 +83,7 @@ const BigCard = ({ item }) => {
       <Text fontSize="3xl" fontWeight="bold" ml="10px">
         {item?.title}
       </Text>
-      <Text fontSize="md"  ml="10px">
+      <Text fontSize="md" ml="10px">
         {item?.num} {item.description}
       </Text>
     </Flex>
