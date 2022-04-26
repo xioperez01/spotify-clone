@@ -6,6 +6,8 @@ export const initialState = {
   token: null,
   featuredPlaylists: null,
   recentlyPlaylists: [],
+  topCategories: [],
+  allCategories: null,
 };
 
 const reducer = (state, action) => {
@@ -34,6 +36,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         recentlyPlaylists: [...new Set(action.recentlyPlaylists)],
+      };
+    case "SET_ALL_CATEGORIES":
+      return {
+        ...state,
+        allCategories: action.allCategories,
+      };
+    case "SET_TOP_CATEGORIES":
+      return {
+        ...state,
+        topCategories: action.topCategories,
       };
     default:
       return state;
