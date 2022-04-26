@@ -17,6 +17,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useDataLayerValue } from "../DataLayer";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { RiExternalLinkLine } from "react-icons/ri";
@@ -27,8 +28,10 @@ import {
   MdOutlineClose,
 } from "react-icons/md";
 
-const Topbar = ({ view }) => {
-  const [{ user }] = useDataLayerValue();
+const Topbar = () => {
+  const { pathname } = useLocation();
+
+  const [{ user }, dispatch] = useDataLayerValue();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [toSearch, setToSearch] = React.useState("");
@@ -39,6 +42,13 @@ const Topbar = ({ view }) => {
     { title: "Artistas" },
     { title: "Álbumes" },
   ];
+
+  const logOut = () => {
+    dispatch({
+      type: "SET_TOKEN",
+      token: null,
+    });
+  };
 
   const handleSearch = () => {
     if (document.getElementById("toSearch")) {
@@ -93,7 +103,7 @@ const Topbar = ({ view }) => {
             icon={<MdOutlineArrowForwardIos size={20} />}
           />
         </ButtonGroup>
-        {view === "SEARCH" ? (
+        {pathname === "/search" ? (
           <InputGroup w="360px">
             <InputLeftElement
               pointerEvents="none"
@@ -126,9 +136,9 @@ const Topbar = ({ view }) => {
               <></>
             )}
           </InputGroup>
-        ) : view === "LIBRARY" ? (
+        ) : pathname === "/library" ? (
           <ButtonGroup color="white">
-            {libraryMenu.map((i, index) => (
+            {libraryMenu.map((i) => (
               <Button
                 key={i.title}
                 bgColor="transparent"
@@ -204,7 +214,9 @@ const Topbar = ({ view }) => {
             </Flex>
           </MenuItem>
           <MenuItem _hover={{ bgColor: "#3e3e3e" }}>Perfil</MenuItem>
-          <MenuItem _hover={{ bgColor: "#3e3e3e" }}>Cerrar Sesión</MenuItem>
+          <MenuItem _hover={{ bgColor: "#3e3e3e" }} onClick={logOut}>
+            Cerrar Sesión
+          </MenuItem>
         </MenuList>
       </Menu>
     </Flex>
@@ -212,3 +224,4 @@ const Topbar = ({ view }) => {
 };
 
 export default Topbar;
+

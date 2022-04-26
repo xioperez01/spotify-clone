@@ -4,11 +4,14 @@ import { getTokenFromResponse } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "./DataLayer";
 import Body from "./Body";
+import { BrowserRouter } from "react-router-dom";
+import { DataLayer } from "./DataLayer";
+import reducer, { initialState } from "./reducer";
 
-const spotify = new SpotifyWebApi();
+export const spotify = new SpotifyWebApi();
 
-function App() {
-  const [{ token, user }, dispatch] = useDataLayerValue();
+const RequireLoggedInUser = ({ children }) => {
+  const [{ token }, dispatch] = useDataLayerValue();
 
   React.useEffect(() => {
     const hash = getTokenFromResponse();
@@ -30,16 +33,37 @@ function App() {
         });
       });
 
-      spotify.getUserPlaylists(user?.id).then((playLists) => {
+      spotify.getUserPlaylists().then((playLists) => {
         dispatch({
           type: "SET_PLAYLISTS",
           playlists: playLists,
         });
       });
+
+      spotify
+        .getFeaturedPlaylists({ market: "CO", limit: 7 })
+        .then((featuredPlaylists) => {
+          dispatch({
+            type: "SET_FEATUREDPLAYLISTS",
+            featuredPlaylists: featuredPlaylists,
+          });
+        });
     }
   });
 
-  return <div>{token ? <Body /> : <Login />}</div>;
+  return !token ? <Login /> : children;
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <DataLayer initialState={initialState} reducer={reducer}>
+        <RequireLoggedInUser>
+          <Body />
+        </RequireLoggedInUser>
+      </DataLayer>
+    </BrowserRouter>
+  );
 }
 
 export default App;

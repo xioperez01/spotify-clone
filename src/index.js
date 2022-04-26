@@ -3,17 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { DataLayer } from "./DataLayer";
-import reducer, { initialState } from "./reducer";
+
 import { ChakraProvider } from "@chakra-ui/provider";
 import { theme } from "./spotifyTheme";
 
 ReactDOM.render(
-  <DataLayer initialState={initialState} reducer={reducer}>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
-  </DataLayer>,
+  <ChakraProvider theme={theme}>
+    <App />
+  </ChakraProvider>,
+
   document.getElementById("root")
 );
 

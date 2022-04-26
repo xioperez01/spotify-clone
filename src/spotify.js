@@ -8,6 +8,11 @@ const scopes = [
   "user-read-playback-state",
   "user-top-read",
   "user-modify-playback-state",
+  "user-library-read",
+  "user-read-private",
+  "user-follow-read",
+  "playlist-read-collaborative",
+  "playlist-read-private",
 ];
 
 export const getTokenFromResponse = () => {
@@ -25,3 +30,4 @@ export const getTokenFromResponse = () => {
 export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"
 )}&response_type=token&show_dialog=true`;
+
