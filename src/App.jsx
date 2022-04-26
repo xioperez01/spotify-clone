@@ -48,6 +48,9 @@ const RequireLoggedInUser = ({ children }) => {
             featuredPlaylists: featuredPlaylists,
           });
         });
+      spotify.getMySavedTracks().then((data) => {
+        dispatch({ type: "SAVED_TRACKS", savedTracks: data });
+      });
     }
   });
 

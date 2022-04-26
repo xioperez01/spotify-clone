@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Stack, Heading, SimpleGrid, GridItem } from "@chakra-ui/react";
 import { useDataLayerValue } from "../DataLayer";
 import CardType2 from "../Shared/Cards/CardType2";
-import { spotify } from "../App";
 import BigCard from "../Shared/Cards/BigCard";
 
 const LibraryView = () => {
-  const [{ playlists }] = useDataLayerValue();
+  const [{ playlists, savedTracks }] = useDataLayerValue();
+
+  const description = savedTracks?.items
+    ?.slice(0, 8)
+    .map((t) => `${t.track.artists[0].name} ${t.track.name}`)
+    .join(" * ");
 
   return (
     <Stack
@@ -31,8 +35,13 @@ const LibraryView = () => {
         columns={{ base: 2, md: 3, lg: 4, xl: 5, "2xl": 7 }}
         spacing={6}
       >
-        <GridItem colStart={1} colEnd={3}>
-          <BigCard />
+        <GridItem colStart={1} colEnd={3} rowSpan={1}>
+          <BigCard
+            title="Canciones que te gustan"
+            description={description}
+            total={savedTracks.total}
+            color="linear-gradient(135deg, rgba(65,1,244,1) -50%, rgba(99,63,236,1) 40%, rgba(187,227,216,1) 150%)"
+          />
         </GridItem>
 
         {playlists?.items?.map((i) => (
