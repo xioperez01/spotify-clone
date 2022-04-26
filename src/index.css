@@ -31,3 +31,7 @@ code {
   background: #555;
 }
 
+.carousel .slide {
+  min-width: auto !important;
+  margin-right: 22px !important;
+}

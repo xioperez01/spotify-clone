@@ -12,3 +12,15 @@ export const colorGenerate = (color) => {
   return gradient;
 };
 
+export const bgColorGenerate = () => {
+  return (
+    "rgb(" +
+    [
+      Math.round(Math.random() * 200),
+      Math.round(Math.random() * 200),
+      Math.round(Math.random() * 200),
+    ].join(",") +
+    ")"
+  );
+};
+

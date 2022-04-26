@@ -1,34 +1,46 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import React from 'react';
+import React from "react";
+import { Flex, Image, Text } from "@chakra-ui/react";
+import { bgColorGenerate } from "../Functions/changeBgColor";
 
-const CardType3 = ({ item }) => {
+const CardType3 = ({ title, image, color }) => {
   return (
     <Flex
-      w="225px"
-      h="220px"
-      bg={item?.color}
+      h="100%"
+      w="100%"
+      minW={{ base: "150px", xl: "180px" }}
+      minH={{ base: "150px", xl: "180px" }}
+      bg={color ? color : bgColorGenerate()}
       borderRadius="lg"
       overflow="hidden"
       align="flex-start"
       direction="column"
       justify="space-between"
-      _hover={{cursor: "pointer"}}
+      _hover={{ cursor: "pointer" }}
       position="relative"
     >
-      <Text fontSize="2xl" color="white" fontWeight="bold"  m="15px" maxW="90%" lineHeight="1.2">
-        {item?.title}
+      <Text
+        fontSize="2xl"
+        color="white"
+        fontWeight="bold"
+        m="15px"
+        maxW="90%"
+        lineHeight="1.2"
+        zIndex={1}
+      >
+        {title}
       </Text>
       <Image
-        src={item?.images?.url}
+        src={image}
         alt="image"
         boxSize="100px"
         transform="rotate(25deg)"
         position="absolute"
-        top="125px"
-        left="140px"
+        bottom={-2}
+        right={-5}
       ></Image>
     </Flex>
   );
 };
 
 export default CardType3;
+
