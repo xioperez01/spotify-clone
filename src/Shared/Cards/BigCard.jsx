@@ -1,14 +1,18 @@
-import { Flex, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Flex, Text } from "@chakra-ui/react";
+import React from "react";
 
-const BigCard = ({item}) => {
+const BigCard = () => {
   return (
-    <Flex w="500px" b={item?.color}>
-        <Text>{item?.artist}</Text>
-        <Text>{item?.title}</Text>
-        <Text>{item?.num}{item.description}</Text>
+    <Flex w="100%" h="100%" bgColor="red">
+      <Text>hola</Text>
+      <Text>title</Text>
+      <Text>
+        {"cantidad"}
+        {"description"}
+      </Text>
     </Flex>
-  )
-}
+  );
+};
 
-export default BigCard
+export default BigCard;
+
