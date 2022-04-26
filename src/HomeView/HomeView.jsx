@@ -19,6 +19,7 @@ import CardType2 from '../Shared/Cards/CardType2';
 import { spotify } from '../App';
 import CardType3 from '../Shared/Cards/CardType3';
 import CardType4 from '../Shared/Cards/CardType4';
+import BigCard from '../Shared/Cards/BigCard';
 
 const HomeView = () => {
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
@@ -74,6 +75,8 @@ const HomeView = () => {
     '2xl': 7,
   });
 
+
+
   const card3 = {
     title: 'Pop',
     images: {
@@ -81,6 +84,21 @@ const HomeView = () => {
     },
     color: '#A45FDA',
   };
+
+  const bigCardLists = {
+    artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles",
+    num: 50,
+    title: "Canciones que te gustan",
+    description: "canciones que te gustan",
+    color: "",
+  }
+  const bigCardPodcasts = {
+    artists: "BTSCarbon Fiber Music Hard Lights Sonora Carruseles",
+    num: 10,
+    title: "Tus episodios",
+    description: "episodios",
+    color: "",
+  }
 
   const currentHour = new Date();
   return (
@@ -240,6 +258,21 @@ const HomeView = () => {
         </Flex>
         <SimpleGrid columns={itemsToDisplay} gap={4}>
           <CardType3 item={card3} />
+        </SimpleGrid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Big cards</Heading>
+          </Box>
+        </Flex>
+        <SimpleGrid columns={itemsToDisplay} gap={2}>
+          <BigCard item={bigCardLists} />
+          <BigCard item={bigCardPodcasts} />
         </SimpleGrid>
       </Box>
     </Stack>
