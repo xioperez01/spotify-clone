@@ -104,6 +104,125 @@ const HomeView = () => {
         
         </Box>
         <PlaylistTable />
+
+        <Grid
+          w="100%"
+          h="auto"
+          mt={6}
+          templateColumns={{ base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+          templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
+          gap={4}
+        >
+          <GridItem>
+            <CardType1 onChangeColor={handleChangeColor} />
+          </GridItem>
+
+          {fivePlaylists?.map((list, index) =>
+            index <= 4 ? (
+              <GridItem key={list?.id}>
+                <CardType1 item={list} onChangeColor={handleChangeColor} />
+              </GridItem>
+            ) : (
+              <></>
+            )
+          )}
+        </Grid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Destacado</Heading>
+            <Text mt={2} fontSize="sm" color="#D2CDCC" opacity="0.7">
+              Playlists destacadas.
+            </Text>
+          </Box>
+          <Link fontSize="xs" color="#D2CDCC" opacity="0.7" fontWeight="bold">
+            VER TODO
+          </Link>
+        </Flex>
+
+        <SimpleGrid columns={itemsToDisplay} gap={4}>
+          {featuredPlaylists?.playlists?.items?.map((i, index) =>
+            index < itemsToDisplay ? (
+              <GridItem key={i?.id}>
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
+              </GridItem>
+            ) : (
+              <></>
+            )
+          )}
+        </SimpleGrid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Nueva Musica</Heading>
+          </Box>
+          <Link fontSize="xs" color="#D2CDCC" opacity="0.7" fontWeight="bold">
+            VER TODO
+          </Link>
+        </Flex>
+
+        <SimpleGrid columns={itemsToDisplay} gap={4}>
+          {newMusic?.items?.map((i, index) =>
+            index < itemsToDisplay ? (
+              <GridItem key={i?.id}>
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
+              </GridItem>
+            ) : (
+              <></>
+            )
+          )}
+        </SimpleGrid>
+      </Box>
+      <Box px={{ base: 4, lg: 8 }} w="100%" h="auto" color="white">
+        <Flex
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box mb={4}>
+            <Heading fontSize="25px">Escuchado recientemente</Heading>
+          </Box>
+          <Link fontSize="xs" color="#D2CDCC" opacity="0.7" fontWeight="bold">
+            VER TODO
+          </Link>
+        </Flex>
+        <SimpleGrid columns={itemsToDisplay} gap={4}>
+          {recentlyPlaylists?.map((i, index) =>
+            index < itemsToDisplay ? (
+              <GridItem key={i?.id}>
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
+              </GridItem>
+            ) : (
+              <></>
+            )
+          )}
+        </SimpleGrid>
+      </Box>
     </Stack>
   );
 };

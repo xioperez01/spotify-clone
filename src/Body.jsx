@@ -7,7 +7,11 @@ import HomeView from "./HomeView/HomeView";
 import { Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
+import PlaylistsView from "./LibraryView/LibraryView";
 import SearchView from "./SearchView/SearchView";
+import PodcastsView from "./LibraryView/PodcastsView";
+import ArtistsView from "./LibraryView/ArtistsView";
+import AlbumsView from "./LibraryView/AlbumsView";
 
 const Body = () => {
   return (
@@ -16,9 +20,23 @@ const Body = () => {
       <Topbar />
       <Switch>
         <Redirect from="/" to={"/home"} exact />
+        <Redirect from="/library" to={"/library/playlists"} exact />
+        <Redirect from="/" to={"/home"} exact />
 
         <Route exact path="/home">
           <HomeView />
+        </Route>
+        <Route exact path="/library/playlists">
+          <PlaylistsView />
+        </Route>
+        <Route exact path="/library/podcasts">
+          <PodcastsView />
+        </Route>
+        <Route exact path="/library/artists">
+          <ArtistsView />
+        </Route>
+        <Route exact path="/library/albums">
+          <AlbumsView />
         </Route>
         <Route exact path="/search">
           <SearchView />

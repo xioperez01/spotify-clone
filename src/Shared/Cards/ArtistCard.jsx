@@ -3,22 +3,23 @@ import {
   Box,
   Flex,
   Text,
-  Image,
   ScaleFade,
   Icon,
   useDisclosure,
   Circle,
+  Avatar,
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
 
-const CardType2 = ({ image, title, description, owner }) => {
+const ArtistCard = ({ image, title, type }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <>
       <Box
-        w="100%"
-        h="auto"
+        w="auto"
+        h="100%"
+        maxW="220px"
         bg="#181818"
         borderRadius="lg"
         overflow="hidden"
@@ -34,13 +35,7 @@ const CardType2 = ({ image, title, description, owner }) => {
         onMouseLeave={onToggle}
       >
         <Box position="relative">
-          <Image
-            src={image}
-            alt="AlbumImage"
-            borderRadius="5px"
-            boxSize="100%"
-            align="center"
-          />
+          <Avatar src={image} boxSize="150" />
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Circle
               bg="black"
@@ -81,7 +76,7 @@ const CardType2 = ({ image, title, description, owner }) => {
             isTruncated
             maxW="100%"
           >
-            {description ? description : `De ${owner}`}
+            {type}
           </Text>
         </Flex>
       </Box>
@@ -89,5 +84,5 @@ const CardType2 = ({ image, title, description, owner }) => {
   );
 };
 
-export default CardType2;
+export default ArtistCard;
 
