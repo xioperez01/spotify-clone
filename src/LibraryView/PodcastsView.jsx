@@ -6,6 +6,7 @@ import BigCard from "../Shared/Cards/BigCard";
 
 const PodcastsView = () => {
   const [{ savedShows }] = useDataLayerValue();
+
   return (
     <Stack
       w="calc(100% - 240px)"
@@ -28,8 +29,9 @@ const PodcastsView = () => {
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4, xl: 5, "2xl": 7 }}
         spacing={6}
+        minChildWidth={savedShows?.items?.length <= 5 ? "" : "180px"}
       >
-        <GridItem colStart={1} colEnd={3} rowSpan={1}>
+        <GridItem colStart={1} colEnd={{ base: 2, md: 3 }} rowSpan={1}>
           <BigCard
             title="Tus Episodios"
             total={0}

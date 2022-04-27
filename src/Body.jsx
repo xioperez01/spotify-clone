@@ -10,6 +10,7 @@ import { Route } from "react-router-dom";
 import PlaylistsView from "./LibraryView/LibraryView";
 import SearchView from "./SearchView/SearchView";
 import PodcastsView from "./LibraryView/PodcastsView";
+import ArtistsView from "./LibraryView/ArtistsView";
 
 const Body = () => {
   return (
@@ -29,6 +30,9 @@ const Body = () => {
         </Route>
         <Route exact path="/library/podcasts">
           <PodcastsView />
+        </Route>
+        <Route exact path="/library/artists">
+          <ArtistsView />
         </Route>
         <Route exact path="/search">
           <SearchView />

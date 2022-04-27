@@ -10,6 +10,7 @@ export const initialState = {
   allCategories: null,
   savedTracks: null,
   savedShows: null,
+  followedArtists: null,
 };
 
 const reducer = (state, action) => {
@@ -58,6 +59,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         savedShows: action.savedShows,
+      };
+    case "FOLLOWED_ARTISTS":
+      return {
+        ...state,
+        followedArtists: action.followedArtists,
       };
     default:
       return state;
