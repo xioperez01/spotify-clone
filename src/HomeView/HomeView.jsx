@@ -17,6 +17,7 @@ import CardType1 from "../Shared/Cards/CardType1";
 import { colorGenerate } from "../Shared/Functions/changeBgColor";
 import CardType2 from "../Shared/Cards/CardType2";
 import { spotify } from "../App";
+import PlaylistTable from '../PlaylistTable/PlaylistTable';
 
 const HomeView = () => {
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
@@ -100,6 +101,9 @@ const HomeView = () => {
             ? "¡Buenas tardes!"
             : "¡Buenas noches!"}
         </Heading>
+        
+        </Box>
+        <PlaylistTable />
 
         <Grid
           w="100%"
