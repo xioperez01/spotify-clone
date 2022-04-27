@@ -63,6 +63,10 @@ const RequireLoggedInUser = ({ children }) => {
         .then((data) => {
           dispatch({ type: "FOLLOWED_ARTISTS", followedArtists: data });
         });
+
+      spotify.getMySavedAlbums().then((data) => {
+        dispatch({ type: "SAVED_ALBUMS", savedAlbums: data });
+      });
     }
   });
 

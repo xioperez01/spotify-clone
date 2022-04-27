@@ -11,6 +11,7 @@ import PlaylistsView from "./LibraryView/LibraryView";
 import SearchView from "./SearchView/SearchView";
 import PodcastsView from "./LibraryView/PodcastsView";
 import ArtistsView from "./LibraryView/ArtistsView";
+import AlbumsView from "./LibraryView/AlbumsView";
 
 const Body = () => {
   return (
@@ -33,6 +34,9 @@ const Body = () => {
         </Route>
         <Route exact path="/library/artists">
           <ArtistsView />
+        </Route>
+        <Route exact path="/library/albums">
+          <AlbumsView />
         </Route>
         <Route exact path="/search">
           <SearchView />

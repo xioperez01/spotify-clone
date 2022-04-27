@@ -1,10 +1,10 @@
 import React from "react";
 import { Stack, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useDataLayerValue } from "../DataLayer";
-import ArtistCard from "../Shared/Cards/ArtistCard";
+import CardType2 from "../Shared/Cards/CardType2";
 
-const ArtistsView = () => {
-  const [{ followedArtists }] = useDataLayerValue();
+const AlbumsView = () => {
+  const [{ savedAlbums }] = useDataLayerValue();
 
   return (
     <Stack
@@ -22,24 +22,23 @@ const ArtistsView = () => {
       pt="80px"
       px={{ base: 4, lg: 8 }}
     >
-      {followedArtists.artists.items.length !== 0 ? (
+      {savedAlbums?.total !== 0 ? (
         <>
+          {" "}
           <Heading color="white" fontSize="25px">
-            Artistas
+            Álbumes
           </Heading>
           <SimpleGrid
             columns={{ base: 2, md: 3, lg: 4, xl: 5, "2xl": 7 }}
             spacing={6}
-            minChildWidth={
-              followedArtists?.artists?.items?.length <= 5 ? "" : "180px"
-            }
+            minChildWidth={savedAlbums?.items?.length <= 5 ? "" : "180px"}
           >
-            {followedArtists?.artists?.items?.map((i) => (
-              <ArtistCard
-                key={i?.id}
-                title={i?.name}
-                image={i?.images[0]?.url}
-                type="Artista"
+            {savedAlbums?.items?.map((i) => (
+              <CardType2
+                key={i?.album?.id}
+                title={i?.album?.name}
+                image={i?.album?.images[0]?.url}
+                owner={i?.album?.artists[0]?.name}
               />
             ))}
           </SimpleGrid>
@@ -51,5 +50,5 @@ const ArtistsView = () => {
   );
 };
 
-export default ArtistsView;
+export default AlbumsView;
 

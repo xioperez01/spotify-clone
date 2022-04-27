@@ -65,6 +65,11 @@ const reducer = (state, action) => {
         ...state,
         followedArtists: action.followedArtists,
       };
+    case "SAVED_ALBUMS":
+      return {
+        ...state,
+        savedAlbums: action.savedAlbums,
+      };
     default:
       return state;
   }
