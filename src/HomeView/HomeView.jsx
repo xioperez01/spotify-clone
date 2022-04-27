@@ -145,7 +145,12 @@ const HomeView = () => {
           {featuredPlaylists?.playlists?.items?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2 item={i} />
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
               </GridItem>
             ) : (
               <></>
@@ -171,7 +176,12 @@ const HomeView = () => {
           {newMusic?.items?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2 item={i} />
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
               </GridItem>
             ) : (
               <></>
@@ -196,7 +206,12 @@ const HomeView = () => {
           {recentlyPlaylists?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2 item={i} />
+                <CardType2
+                  title={i?.name}
+                  image={i?.images[0]?.url}
+                  description={i?.description}
+                  owner={i?.owner?.display_name}
+                />
               </GridItem>
             ) : (
               <></>

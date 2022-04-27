@@ -27,6 +27,7 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineClose,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
   const { pathname } = useLocation();
@@ -37,10 +38,10 @@ const Topbar = () => {
   const [toSearch, setToSearch] = React.useState("");
 
   const libraryMenu = [
-    { title: "Listas" },
-    { title: "Potcasts" },
-    { title: "Artistas" },
-    { title: "Álbumes" },
+    { title: "Listas", label: "/library/playlists" },
+    { title: "Potcasts", label: "/library/podcasts" },
+    { title: "Artistas", label: "/library/artists" },
+    { title: "Álbumes", label: "/library/albums" },
   ];
 
   const logOut = () => {
@@ -136,20 +137,22 @@ const Topbar = () => {
               <></>
             )}
           </InputGroup>
-        ) : pathname === "/library" ? (
+        ) : pathname.includes("/library") ? (
           <ButtonGroup color="white">
             {libraryMenu.map((i) => (
-              <Button
-                key={i.title}
-                bgColor="transparent"
-                fontSize="sm"
-                fontWeight="bold"
-                _focus={{ border: "none", bgColor: "#3e3e3e" }}
-                _active={{ bgColor: "#3e3e3e" }}
-                _hover={{}}
-              >
-                {i.title}
-              </Button>
+              <Link to={i.label}>
+                <Button
+                  key={i.title}
+                  bgColor="transparent"
+                  fontSize="sm"
+                  fontWeight="bold"
+                  _focus={{ border: "none", bgColor: "#3e3e3e" }}
+                  _active={{ bgColor: "#3e3e3e" }}
+                  _hover={{}}
+                >
+                  {i.title}
+                </Button>
+              </Link>
             ))}
           </ButtonGroup>
         ) : (
