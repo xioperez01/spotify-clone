@@ -1,21 +1,11 @@
 import {
   Box,
-  Button,
-  ButtonGroup,
   Container,
   Flex,
-  HStack,
   Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Stack,
   Text,
   useBreakpointValue,
-  useColorModeValue,
-  ScaleFade,
-  useDisclosure,
-  Circle,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
