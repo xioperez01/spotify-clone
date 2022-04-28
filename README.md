@@ -2,7 +2,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/xioperez01/spotify-clone?color=orange)](https://github.com/xioperez01/spotify-clone/network)
 [![GitHub stars](https://img.shields.io/github/stars/xioperez01/spotify-clone?color=blueviolet)](https://github.com/xioperez01/spotify-clone/stargazers)
 
-# Spotify Clone
+# Spotify Clone 
 ## Table of contents
 * [General info](#general-info)
 * [Demo](#demo)
@@ -24,6 +24,9 @@ Here is a working live demo :
 
 ## App
 ![](src/images/Inicio.png)
+Some layouts:
+![](src/images/TusMeGusta.png) ![](src/images/PlayList.png)
+![](src/images/BusquedaPrincipal.png) ![](src/images/BibliotecaPlaylists.png)
 	
 ## Technologies
 This project is created with:
