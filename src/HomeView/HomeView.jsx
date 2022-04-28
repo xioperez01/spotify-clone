@@ -17,6 +17,7 @@ import CardType1 from '../Shared/Cards/CardType1';
 import { colorGenerate } from '../Shared/Functions/changeBgColor';
 import CardType2 from '../Shared/Cards/CardType2';
 import { spotify } from '../App';
+import SearchResultCard from '../Shared/Cards/SearchResult';
 
 const HomeView = () => {
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
@@ -73,6 +74,15 @@ const HomeView = () => {
   });
 
   const currentHour = new Date();
+
+  const item = {
+    image: {
+      url: 'https://media.istockphoto.com/photos/minimal-scene-of-sunglasses-and-headphone-on-human-head-sculpture-picture-id1328826336?b=1&k=20&m=1328826336&s=170667a&w=0&h=y1pSXfJkO0ZVQFCAU6sv6LtzcB8CmIIe89Ei2L0qJMQ=',
+    },
+    name: 'Electro House 2022',
+    description: 'LISTA',
+  };
+
   return (
     <Stack
       w="calc(100% - 240px)"
@@ -100,6 +110,8 @@ const HomeView = () => {
             ? '¡Buenas tardes!'
             : '¡Buenas noches!'}
         </Heading>
+
+        <SearchResultCard item={item} />
 
         <Grid
           w="100%"
