@@ -25,8 +25,10 @@ Here is a working live demo :
 ## App
 ![](src/images/Inicio.png)
 Some layouts:
-![](src/images/TusMeGusta.png) ![](src/images/PlayList.png)
-![](src/images/BusquedaPrincipal.png) ![](src/images/BibliotecaPlaylists.png)
+
+![](src/images/TusMeGusta.png)  |  ![](src/images/PlayList.png)
+:-------------------------:|:-------------------------:
+![](src/images/BusquedaPrincipal.png)  |![](src/images/BibliotecaPlaylists.png)
 	
 ## Technologies
 This project is created with:
@@ -36,7 +38,7 @@ This project is created with:
 * CSS
 
 ## Setup
-To run this project, closing our repository, install it locally using npm:
+To run this project, after cloning our repository, install it locally using npm:
 
 ```
 $ cd spotify-clone
@@ -48,4 +50,4 @@ $ npm start
 * **Martin Corredor** - [martincorredor](https://github.com/martincorredor)
 
 ## [License](https://github.com/xioperez01/spotify-clone/blob/main/LICENSE)
-MIT © [Angie Perez](https://github.com/xioperez01) [Martin Corredor](https://github.com/martincorredor)
+MIT © [Angie Perez](https://github.com/xioperez01),  [Martin Corredor](https://github.com/martincorredor)
