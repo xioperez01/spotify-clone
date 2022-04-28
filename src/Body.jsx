@@ -14,10 +14,18 @@ import ArtistsView from "./LibraryView/ArtistsView";
 import AlbumsView from "./LibraryView/AlbumsView";
 import GenreView from "./GenreView/GenreView";
 import PlaylistView from "./PlaylistView/PlaylistView";
+import SearchResultView from "./SearchView/SearchResultView";
 
 const Body = () => {
   return (
-    <Box maxWidth="100vw" height="100vh" minH="500px" p={0} overflowY="auto">
+    <Box
+      maxWidth="100vw"
+      height="100vh"
+      minH="500px"
+      p={0}
+      overflowY="auto"
+      onScroll={() => console.log("Body")}
+    >
       <Sidebar />
       <Topbar />
       <Switch>
@@ -27,6 +35,12 @@ const Body = () => {
 
         <Route exact path="/home">
           <HomeView />
+        </Route>
+        <Route exact path="/search">
+          <SearchView />
+        </Route>
+        <Route exact path="/search/:toSearch">
+          <SearchResultView />
         </Route>
         <Route exact path="/library/playlists">
           <ListsView />
@@ -39,9 +53,6 @@ const Body = () => {
         </Route>
         <Route exact path="/library/albums">
           <AlbumsView />
-        </Route>
-        <Route exact path="/search">
-          <SearchView />
         </Route>
         <Route path={"/genre/:id"}>
           <GenreView />

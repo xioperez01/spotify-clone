@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import {
-  Box,
-  HStack,
-  Icon,
-  Image,
-  Td,
-  Text,
-  Tr,
-  Link,
-} from "@chakra-ui/react";
+import { Box, HStack, Icon, Image, Td, Text, Tr, Link } from "@chakra-ui/react";
 import { BsThreeDots, BsFillPlayFill } from "react-icons/bs";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
-import { milliSecondsToMinutes } from "../Shared/Functions/secondsToMinutes";
+import { milliSecondsToMinutes } from "../../Shared/Functions/secondsToMinutes";
 
 const Row = ({ member, isCurrentLike = true, index }) => {
   const [isLike, setIsLike] = useState(isCurrentLike);
@@ -34,12 +25,11 @@ const Row = ({ member, isCurrentLike = true, index }) => {
       _hover={{
         backgroundColor: "rgba(255,255,255, 0.2)",
         color: "white",
-        transitionDuration: "0.6s",
-        transitionTimingFunction: "ease-in-out",
       }}
       _focus={{ backgroundColor: "#665e5b" }}
       onMouseEnter={handleInHoverSong}
       onMouseLeave={handleOutHoverSong}
+      transition="background-color 0.5s ease"
     >
       <Td border="none" w="20px" px={0} textAlign="center" pl={2}>
         {isHoverSong ? (
@@ -111,8 +101,6 @@ const Row = ({ member, isCurrentLike = true, index }) => {
             onClick={handleLike}
             boxSize="20px"
             color="#D2CDCC"
-            position="relative"
-            right="20px"
             _hover={{ color: "#fff" }}
           />
         ) : (
@@ -126,11 +114,7 @@ const Row = ({ member, isCurrentLike = true, index }) => {
       </Td>
       <Td border="none" px={0} textAlign="center">
         {isHoverSong ? (
-          <Icon
-            as={BsThreeDots}
-            boxSize="20px"
-            color="#D2CDCC"
-          />
+          <Icon as={BsThreeDots} boxSize="20px" color="#D2CDCC" />
         ) : (
           <></>
         )}

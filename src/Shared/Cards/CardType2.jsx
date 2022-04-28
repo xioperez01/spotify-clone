@@ -32,13 +32,12 @@ const CardType2 = ({ image, title, description, owner, id }) => {
         p="15px"
         _hover={{
           cursor: "pointer",
-          background: "#282828",
-          transitionDuration: "0.6s",
-          transitionTimingFunction: "ease-in-out",
+          backgroundColor: "#282828",
         }}
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
         onClick={handlePath}
+        transition="background-color 0.5s ease"
       >
         <Box position="relative">
           <Image

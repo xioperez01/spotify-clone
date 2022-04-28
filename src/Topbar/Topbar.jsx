@@ -16,7 +16,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDataLayerValue } from "../DataLayer";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
@@ -28,16 +28,21 @@ import {
   MdOutlineClose,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import { debounce } from "lodash";
 
 const Topbar = () => {
+  const history = useHistory();
   const { pathname } = useLocation();
   const { goBack, goForward } = useHistory();
 
   const [{ user }, dispatch] = useDataLayerValue();
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [toSearch, setToSearch] = React.useState("");
+  const [newSearch, setNewSearch] = React.useState("");
+  const [tmp, setTmp] = React.useState("");
+
+  const currentSearch = pathname.split("/")[2];
 
   const libraryMenu = [
     { title: "Listas", label: "/library/playlists" },
@@ -53,13 +58,16 @@ const Topbar = () => {
     });
   };
 
+  const handlePath = (newSearch) => {
+    history.push(`/search/${newSearch}`);
+  };
+
   const handleSearch = () => {
     if (document.getElementById("toSearch")) {
       if (document.getElementById("toSearch").value) {
         let trim = document.getElementById("toSearch").value.trim();
-
-        const tmp = new RegExp(trim, "i");
-        setToSearch(tmp);
+        setNewSearch(trim);
+        handlePath(trim);
       }
     }
   };
@@ -67,9 +75,13 @@ const Topbar = () => {
   const handleClearSearch = () => {
     if (document.getElementById("toSearch")) {
       document.getElementById("toSearch").value = "";
-      setToSearch("");
+      setNewSearch("");
+      setTmp("");
+      history.push("/search/");
     }
   };
+
+  const debouncedChangeHandler = useCallback(debounce(handleSearch, 500), []);
 
   return (
     <Flex
@@ -108,7 +120,7 @@ const Topbar = () => {
             onClick={goForward}
           />
         </ButtonGroup>
-        {pathname === "/search" ? (
+        {pathname.includes("/search") ? (
           <InputGroup w="360px">
             <InputLeftElement
               pointerEvents="none"
@@ -124,10 +136,18 @@ const Topbar = () => {
               rounded="full"
               _focus={{ border: "none" }}
               _placeholder={{ color: "#757575", fontSize: "14px" }}
-              onChange={handleSearch}
+              value={
+                currentSearch && currentSearch.length !== 0
+                  ? currentSearch
+                  : tmp
+              }
+              onChange={(e) => {
+                setTmp(e.target.value);
+                debouncedChangeHandler(e);
+              }}
               autoComplete="off"
             />
-            {toSearch !== "" ? (
+            {newSearch !== "" ? (
               <InputRightElement
                 children={
                   <MdOutlineClose
