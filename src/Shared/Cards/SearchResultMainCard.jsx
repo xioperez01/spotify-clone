@@ -3,7 +3,6 @@ import {
   Flex,
   Image,
   Text,
-  ScaleFade,
   Icon,
   useDisclosure,
   Circle,
@@ -24,7 +23,7 @@ const SearchResultMainCard = ({ item }) => {
       justify="flex-start"
       align="flex-start"
       color="white"
-      w="470px"
+      w="100%"
       h="220px"
       _hover={{
         cursor: "pointer",
@@ -41,7 +40,7 @@ const SearchResultMainCard = ({ item }) => {
         shadow="dark-lg"
         mb="20px"
       />
-      <Text fontSize="30px" fontWeight="bold">
+      <Text fontSize="30px" fontWeight="bold" noOfLines={2} maxW="80%">
         {item.name}
       </Text>
       <Wrap>
@@ -66,13 +65,13 @@ const SearchResultMainCard = ({ item }) => {
         zIndex={1}
         display={isOpen ? "block" : "none"}
         transition="all 2s ease"
+        shadow="dark-lg"
       >
         <Icon
           as={BsPlayCircleFill}
           color="#1ED760"
           borderColor="#1ED760"
           boxSize="45px"
-          shadow="dark-lg"
           rounded="full"
           _hover={{ transform: "scale(1.1)", transitionDuration: "0.3s" }}
         />

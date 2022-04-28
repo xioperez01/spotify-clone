@@ -16,7 +16,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { useDataLayerValue } from "../DataLayer";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
@@ -40,9 +40,6 @@ const Topbar = () => {
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [newSearch, setNewSearch] = React.useState("");
-  const [tmp, setTmp] = React.useState("");
-
-  const currentSearch = pathname.split("/")[2];
 
   const libraryMenu = [
     { title: "Listas", label: "/library/playlists" },
@@ -66,7 +63,6 @@ const Topbar = () => {
     if (document.getElementById("toSearch")) {
       if (document.getElementById("toSearch").value) {
         let trim = document.getElementById("toSearch").value.trim();
-        setNewSearch(trim);
         handlePath(trim);
       }
     }
@@ -76,7 +72,6 @@ const Topbar = () => {
     if (document.getElementById("toSearch")) {
       document.getElementById("toSearch").value = "";
       setNewSearch("");
-      setTmp("");
       history.push("/search/");
     }
   };
@@ -136,13 +131,7 @@ const Topbar = () => {
               rounded="full"
               _focus={{ border: "none" }}
               _placeholder={{ color: "#757575", fontSize: "14px" }}
-              value={
-                currentSearch && currentSearch.length !== 0
-                  ? currentSearch
-                  : tmp
-              }
               onChange={(e) => {
-                setTmp(e.target.value);
                 debouncedChangeHandler(e);
               }}
               autoComplete="off"
