@@ -78,7 +78,12 @@ const PlaylistView = () => {
         color="white"
       >
         <Flex dir="row" alignItems="end">
-          <Box boxSize={{ base: "180px", md: "225px" }} mr={6} shadow="dark-lg">
+          <Box
+            boxSize={{ base: "180px", md: "225px" }}
+            minW={{ base: "180px", md: "225px" }}
+            mr={6}
+            shadow="dark-lg"
+          >
             {isMeLike ? (
               <Square
                 w="100%"
@@ -107,10 +112,17 @@ const PlaylistView = () => {
               LISTA
             </Tag>
             <Heading
-              fontSize={isMeLike ? "max(5vw, 50px)" : "max(6vw, 50px)"}
+              fontSize={
+                isMeLike
+                  ? "max(5vw, 50px)"
+                  : playList?.name?.length > 30
+                  ? "max(4vw, 50px)"
+                  : "max(6vw, 50px)"
+              }
               mb={2}
               mt={0}
               color="white"
+              noOfLines={2}
             >
               {isMeLike ? "Canciones que te gustan" : playList?.name}
             </Heading>
