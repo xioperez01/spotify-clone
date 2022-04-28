@@ -6,10 +6,8 @@ import CardType3 from "../Shared/Cards/CardType3";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { spotify } from "../App";
 import { useDataLayerValue } from "../DataLayer";
-import { useHistory } from "react-router-dom";
 
 const SearchView = () => {
-  const history = useHistory();
   const [{ topCategories, allCategories }, dispatch] = useDataLayerValue();
 
   const categoriesIds = [
@@ -20,11 +18,6 @@ const SearchView = () => {
   ];
 
   const topCategoriesColors = ["#B49BC8", "#8D67AB", "#E61E32", "#F037A5"];
-
-  const handlePath = (id) => {
-    history.push(`/genre/${id}`);
-  };
-
   useEffect(() => {
     categoriesIds.map((id, index) =>
       spotify.getCategory(id).then((data) => (topCategories[index] = data))
@@ -37,20 +30,7 @@ const SearchView = () => {
       });
   }, []);
 
-  return !allCategories ? (
-    <Box
-      w="calc(100% - 240px)"
-      h="calc(100% -  90px)"
-      bgColor="#1D1D1D"
-      position="absolute"
-      top={0}
-      right={0}
-      overflowY="auto"
-      overflowX="hidden"
-      as="section"
-      pb={{ base: 4, lg: 8 }}
-    ></Box>
-  ) : (
+  return (
     <Stack
       w="calc(100% - 240px)"
       h="calc(100% -  90px)"
@@ -81,7 +61,6 @@ const SearchView = () => {
                 title={c?.name}
                 image={c.icons[0]?.url}
                 color={topCategoriesColors[index]}
-                onOpen={() => handlePath(c?.id)}
               />
             ))}
           </Carousel>
@@ -98,12 +77,7 @@ const SearchView = () => {
           spacing={6}
         >
           {allCategories?.categories?.items?.map((c) => (
-            <CardType3
-              key={c?.id}
-              title={c?.name}
-              image={c?.icons[0]?.url}
-              onOpen={() => handlePath(c?.id)}
-            />
+            <CardType3 key={c?.id} title={c?.name} image={c?.icons[0]?.url} />
           ))}
         </SimpleGrid>
       </Box>

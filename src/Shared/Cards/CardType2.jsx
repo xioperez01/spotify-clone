@@ -10,15 +10,9 @@ import {
   Circle,
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
-import { useHistory } from "react-router-dom";
 
-const CardType2 = ({ image, title, description, owner, id }) => {
-  const history = useHistory();
+const CardType2 = ({ item }) => {
   const { isOpen, onToggle } = useDisclosure();
-
-  const handlePath = () => {
-    history.push(`/playlist/${id}`);
-  };
 
   return (
     <>
@@ -32,16 +26,16 @@ const CardType2 = ({ image, title, description, owner, id }) => {
         p="15px"
         _hover={{
           cursor: "pointer",
-          backgroundColor: "#282828",
+          background: "#282828",
+          transitionDuration: "0.6s",
+          transitionTimingFunction: "ease-in-out",
         }}
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
-        onClick={handlePath}
-        transition="background-color 0.5s ease"
       >
         <Box position="relative">
           <Image
-            src={image}
+            src={item?.images[0].url}
             alt="AlbumImage"
             borderRadius="5px"
             boxSize="100%"
@@ -76,7 +70,7 @@ const CardType2 = ({ image, title, description, owner, id }) => {
             isTruncated
             maxW="100%"
           >
-            {title}
+            {item?.name}
           </Text>
           <Text
             fontSize="sm"
@@ -87,7 +81,9 @@ const CardType2 = ({ image, title, description, owner, id }) => {
             isTruncated
             maxW="100%"
           >
-            {description ? description : `De ${owner}`}
+            {!item.description || item?.description === ""
+              ? `De ${item?.owner?.display_name}`
+              : item?.description}
           </Text>
         </Flex>
       </Box>

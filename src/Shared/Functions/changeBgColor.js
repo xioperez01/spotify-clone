@@ -24,15 +24,3 @@ export const bgColorGenerate = () => {
   );
 };
 
-export const gradientGenerator = () => {
-  return `linear-gradient(180deg, rgba(${[
-    Math.round(Math.random() * 160),
-    Math.round(Math.random() * 160),
-    Math.round(Math.random() * 160),
-  ].join(",")},1) -100%, rgba(${[
-    Math.round(Math.random() * 160),
-    Math.round(Math.random() * 160),
-    Math.round(Math.random() * 160),
-  ].join(",")},1) 100%);`;
-};
-

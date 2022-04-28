@@ -48,25 +48,6 @@ const RequireLoggedInUser = ({ children }) => {
             featuredPlaylists: featuredPlaylists,
           });
         });
-      spotify.getMySavedTracks({ limit: 50 }).then((data) => {
-        dispatch({ type: "SAVED_TRACKS", savedTracks: data });
-      });
-
-      spotify.getMySavedShows().then((data) => {
-        dispatch({ type: "SAVED_SHOWS", savedShows: data });
-      });
-
-      spotify
-        .getGeneric(
-          "https://api.spotify.com/v1/me/following?type=artist&limit=50"
-        )
-        .then((data) => {
-          dispatch({ type: "FOLLOWED_ARTISTS", followedArtists: data });
-        });
-
-      spotify.getMySavedAlbums().then((data) => {
-        dispatch({ type: "SAVED_ALBUMS", savedAlbums: data });
-      });
     }
   });
 

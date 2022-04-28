@@ -3,23 +3,22 @@ import {
   Box,
   Flex,
   Text,
+  Image,
   ScaleFade,
   Icon,
   useDisclosure,
   Circle,
-  Avatar,
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
 
-const ArtistCard = ({ image, title, type }) => {
+const ArtistCard = ({ item }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <>
       <Box
-        w="auto"
-        h="100%"
-        maxW="220px"
+        w="100%"
+        h="auto"
         bg="#181818"
         borderRadius="lg"
         overflow="hidden"
@@ -27,14 +26,21 @@ const ArtistCard = ({ image, title, type }) => {
         p="15px"
         _hover={{
           cursor: "pointer",
-          backgroundColor: "#282828",
+          background: "#282828",
+          transitionDuration: "0.6s",
+          transitionTimingFunction: "ease-in-out",
         }}
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
-        transition="background-color 0.5s ease"
       >
         <Box position="relative">
-          <Avatar src={image} boxSize="150" />
+          <Image
+            src={item?.images[0].url}
+            alt="AlbumImage"
+            borderRadius="50%"
+            boxSize="100%"
+            align="center"
+          />
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Circle
               bg="black"
@@ -64,7 +70,7 @@ const ArtistCard = ({ image, title, type }) => {
             isTruncated
             maxW="100%"
           >
-            {title}
+            {item?.name}
           </Text>
           <Text
             fontSize="sm"
@@ -75,7 +81,9 @@ const ArtistCard = ({ image, title, type }) => {
             isTruncated
             maxW="100%"
           >
-            {type}
+            {!item.description || item?.description === ""
+              ? `De ${item?.owner?.display_name}`
+              : item?.description}
           </Text>
         </Flex>
       </Box>

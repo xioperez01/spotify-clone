@@ -18,10 +18,8 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { useDataLayerValue } from "../DataLayer";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
-const Sidebar = () => {
-  const history = useHistory();
+const Sidebar = ({ handleView }) => {
   const [{ playlists }] = useDataLayerValue();
   const { pathname } = useLocation();
 
@@ -36,10 +34,6 @@ const Sidebar = () => {
       icon: BsFillSuitHeartFill,
     },
   ];
-
-  const handlePath = (id) => {
-    history.push(`/playlist/${id}`);
-  };
   return (
     <Box
       width="240px"
@@ -138,7 +132,7 @@ const Sidebar = () => {
             p={0}
             transitionDuration="0.5s"
             size="xs"
-            onClick={() => handlePath(l?.id)}
+            onClick={() => handleView("")}
           >
             <Text fontSize="14px" maxW="155px" isTruncated>
               {l.name}

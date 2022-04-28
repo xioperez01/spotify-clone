@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useDataLayerValue } from "../DataLayer";
 import CardType1 from "../Shared/Cards/CardType1";
-import { colorGenerate } from "../Shared/Functions/colorGenerator";
+import { colorGenerate } from "../Shared/Functions/changeBgColor";
 import CardType2 from "../Shared/Cards/CardType2";
 import { spotify } from "../App";
 
@@ -73,16 +73,15 @@ const HomeView = () => {
   });
 
   const currentHour = new Date();
-
   return (
     <Stack
       w="calc(100% - 240px)"
       h="calc(100% -  90px)"
-      bgColor="#121212"
+      bgColor="#1D1D1D"
       position="absolute"
       top={0}
       right={0}
-      //overflowY="auto"
+      overflowY="auto"
       overflowX="hidden"
       as="section"
       spacing={10}
@@ -92,7 +91,7 @@ const HomeView = () => {
         pt="80px"
         px={{ base: 4, lg: 8 }}
         bg={color}
-        transition="background-color 0.3s ease"
+        transition="background 2s"
       >
         <Heading color="white" fontSize="32px">
           {currentHour <= 12
@@ -111,17 +110,13 @@ const HomeView = () => {
           gap={4}
         >
           <GridItem>
-            <CardType1 onChangeColor={handleChangeColor} id={"meSavedTracks"} />
+            <CardType1 onChangeColor={handleChangeColor} />
           </GridItem>
 
           {fivePlaylists?.map((list, index) =>
             index <= 4 ? (
               <GridItem key={list?.id}>
-                <CardType1
-                  item={list}
-                  onChangeColor={handleChangeColor}
-                  id={list?.id}
-                />
+                <CardType1 item={list} onChangeColor={handleChangeColor} />
               </GridItem>
             ) : (
               <></>
@@ -150,13 +145,7 @@ const HomeView = () => {
           {featuredPlaylists?.playlists?.items?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2
-                  title={i?.name}
-                  image={i?.images[0]?.url}
-                  description={i?.description}
-                  owner={i?.owner?.display_name}
-                  id={i?.id}
-                />
+                <CardType2 item={i} />
               </GridItem>
             ) : (
               <></>
@@ -182,13 +171,7 @@ const HomeView = () => {
           {newMusic?.items?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2
-                  title={i?.name}
-                  image={i?.images[0]?.url}
-                  description={i?.description}
-                  owner={i?.owner?.display_name}
-                  id={i?.id}
-                />
+                <CardType2 item={i} />
               </GridItem>
             ) : (
               <></>
@@ -213,13 +196,7 @@ const HomeView = () => {
           {recentlyPlaylists?.map((i, index) =>
             index < itemsToDisplay ? (
               <GridItem key={i?.id}>
-                <CardType2
-                  title={i?.name}
-                  image={i?.images[0]?.url}
-                  description={i?.description}
-                  owner={i?.owner?.display_name}
-                  id={i?.id}
-                />
+                <CardType2 item={i} />
               </GridItem>
             ) : (
               <></>
