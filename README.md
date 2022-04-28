@@ -6,6 +6,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Demo](#demo)
+* [App](#app)
 * [Technologies](#technologies)
 * [Setup](#setup)
 
@@ -20,6 +21,9 @@ By connecting our application to the Spotify API, we can recreate functionalitie
 
 ## Demo
 Here is a working live demo :
+
+## App
+
 	
 ## Technologies
 This project is created with:
@@ -39,3 +43,6 @@ $ npm start
 ## Authors
 * **Angie Perez** - [xioperez01](https://github.com/xioperez01)
 * **Martin Corredor** - [martincorredor](https://github.com/martincorredor)
+
+## [License](https://github.com/xioperez01/spotify-clone/blob/main/LICENSE)
+MIT © [Angie Perez](https://github.com/xioperez01) [Martin Corredor](https://github.com/martincorredor)
