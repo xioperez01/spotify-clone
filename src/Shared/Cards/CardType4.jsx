@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { bgColorGenerate } from "../Functions/changeBgColor";
+import { bgColorGenerate } from "../Functions/colorGenerator";
 
-const CardType4 = ({ title, image, color }) => {
+const CardType4 = ({ title, image, color, onOpen }) => {
   return (
     <Flex
       w="390px"
@@ -15,6 +15,7 @@ const CardType4 = ({ title, image, color }) => {
       justify="space-between"
       _hover={{ cursor: "pointer" }}
       position="relative"
+      onClick={onOpen}
     >
       <Text
         fontSize="40px"
