@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { spotify } from "../App";
-import { gradientGenerator } from "../Shared/Functions/colorGenerator";
 import CardType2 from "../Shared/Cards/CardType2";
 
 const GenreView = () => {
@@ -20,9 +19,26 @@ const GenreView = () => {
       .then((data) => setPlayLists(data.playlists));
   }, []);
 
-  const gradient = gradientGenerator();
+  const color = `rgba(${[
+    Math.round(Math.random() * 160),
+    Math.round(Math.random() * 160),
+    Math.round(Math.random() * 160),
+  ].join(",")},1)`;
 
-  return (
+  return !genre ? (
+    <Box
+      w="calc(100% - 240px)"
+      h="calc(100% -  90px)"
+      bgColor="#1D1D1D"
+      position="absolute"
+      top={0}
+      right={0}
+      overflowY="auto"
+      overflowX="hidden"
+      as="section"
+      pb={{ base: 4, lg: 8 }}
+    ></Box>
+  ) : (
     <Box
       w="calc(100% - 240px)"
       h="calc(100% -  90px)"
@@ -43,10 +59,10 @@ const GenreView = () => {
         w="100%"
         px={{ base: 4, lg: 8 }}
         pb={8}
-        bg={gradient}
+        bg={color}
         mb={10}
       >
-        <Heading fontSize="max(5vw, 50px)" color="white">
+        <Heading fontSize="max(6vw, 50px)" color="white">
           {genre?.name}
         </Heading>
       </Flex>
@@ -67,6 +83,7 @@ const GenreView = () => {
                 image={pl?.images[0]?.url}
                 description={pl?.description}
                 owner={pl?.owner?.display_name}
+                id={pl?.id}
               />
             ) : (
               <></>

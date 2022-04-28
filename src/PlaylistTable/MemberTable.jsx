@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import {
-  Flex,
   Icon,
   Table,
   Tbody,
@@ -8,34 +7,40 @@ import {
   Th,
   Thead,
   Tr,
-} from '@chakra-ui/react';
-import { BiTime } from 'react-icons/bi';
-import { members } from './data';
-import Row from './RowTable';
+} from "@chakra-ui/react";
+import { BiTime } from "react-icons/bi";
+import Row from "./RowTable";
 
-const MemberTable = (props) => {
+const MemberTable = (items) => {
   return (
-    <Table {...props}>
+    <Table w="100%">
       <Thead>
         <Tr>
-          <Th borderBottom="1px" borderBottomColor="#5F6762" w="60vw">
-            <Flex justify="flex-start">
-              <Text fontSize="20px" color="#D2CDCC" mr="20px">
-                #
-              </Text>
-              <Text
-                color="#D2CDCC"
-                _hover={{ cursor: 'context-menu', color: 'white' }}
-              >
-                TÍTULO
-              </Text>
-            </Flex>
+          <Th
+            borderBottom="1px"
+            borderBottomColor="#5F6762"
+            w="20px"
+            px={0}
+            textAlign="center"
+            pl={2}
+          >
+            <Text fontSize="20px" color="#D2CDCC">
+              #
+            </Text>
+          </Th>
+          <Th borderBottom="1px" borderBottomColor="#5F6762">
+            <Text
+              color="#D2CDCC"
+              _hover={{ cursor: "context-menu", color: "white" }}
+            >
+              TÍTULO
+            </Text>
           </Th>
           <Th
             color="#D2CDCC"
             borderBottom="1px"
             borderBottomColor="#5F6762"
-            _hover={{ cursor: 'context-menu', color: 'white' }}
+            _hover={{ cursor: "context-menu", color: "white" }}
           >
             ÁLBUM
           </Th>
@@ -44,31 +49,45 @@ const MemberTable = (props) => {
             isTruncated
             borderBottom="1px"
             borderBottomColor="#5F6762"
-            _hover={{ cursor: 'context-menu', color: 'white' }}
+            _hover={{ cursor: "context-menu", color: "white" }}
           >
             FECHA INCORPORACIÓN
           </Th>
           <Th
-            w="90px"
+            w="50px"
             color="#D2CDCC"
             borderBottom="1px"
             borderBottomColor="#5F6762"
+            px={0}
+            textAlign="center"
+          />
+          <Th
+            w="50px"
+            color="#D2CDCC"
+            borderBottom="1px"
+            borderBottomColor="#5F6762"
+            px={0}
+            textAlign="center"
           >
-            <Flex justify="flex-end">
-              <Icon
-                boxSize="20px"
-                position="relative"
-                right="30px"
-                as={BiTime}
-                _hover={{ cursor: 'context-menu', color: 'white' }}
-              ></Icon>
-            </Flex>
+            <Icon
+              boxSize="20px"
+              as={BiTime}
+              _hover={{ cursor: "context-menu", color: "white" }}
+            ></Icon>
           </Th>
+          <Th
+            w="50px"
+            color="#D2CDCC"
+            borderBottom="1px"
+            borderBottomColor="#5F6762"
+            px={0}
+            textAlign="center"
+          />
         </Tr>
       </Thead>
       <Tbody color="#D2CDCC" fontSize="14px">
-        {members.map((member) => (
-          <Row member={member} />
+        {items?.items?.map((item, index) => (
+          <Row key={item?.track?.id} member={item} index={index} />
         ))}
       </Tbody>
     </Table>
@@ -76,3 +95,4 @@ const MemberTable = (props) => {
 };
 
 export default MemberTable;
+
