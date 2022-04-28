@@ -10,9 +10,15 @@ import {
   Circle,
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
-const CardType2 = ({ image, title, description, owner }) => {
+const CardType2 = ({ image, title, description, owner, id }) => {
+  const history = useHistory();
   const { isOpen, onToggle } = useDisclosure();
+
+  const handlePath = () => {
+    history.push(`/playlist/${id}`);
+  };
 
   return (
     <>
@@ -32,6 +38,7 @@ const CardType2 = ({ image, title, description, owner }) => {
         }}
         onMouseEnter={onToggle}
         onMouseLeave={onToggle}
+        onClick={handlePath}
       >
         <Box position="relative">
           <Image

@@ -4,7 +4,7 @@ import { useDataLayerValue } from "../DataLayer";
 import CardType2 from "../Shared/Cards/CardType2";
 import BigCard from "../Shared/Cards/BigCard";
 
-const PlaylistsView = () => {
+const ListsView = () => {
   const [{ playlists, savedTracks }] = useDataLayerValue();
 
   const description = savedTracks?.items
@@ -50,6 +50,7 @@ const PlaylistsView = () => {
             {playlists?.items?.map((i) => (
               <CardType2
                 key={i?.id}
+                id={i?.id}
                 title={i?.name}
                 image={i?.images[0]?.url}
                 description={i?.description}
@@ -65,5 +66,5 @@ const PlaylistsView = () => {
   );
 };
 
-export default PlaylistsView;
+export default ListsView;
 

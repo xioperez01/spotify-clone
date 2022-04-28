@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
-  Flex,
   HStack,
   Icon,
   Image,
@@ -9,21 +8,14 @@ import {
   Text,
   Tr,
   Link,
-} from '@chakra-ui/react';
-import { BsThreeDots, BsFillPlayFill } from 'react-icons/bs';
-import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
+} from "@chakra-ui/react";
+import { BsThreeDots, BsFillPlayFill } from "react-icons/bs";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
+import { milliSecondsToMinutes } from "../Shared/Functions/secondsToMinutes";
 
-const Row = ({ member, isCurrentLike = true }) => {
+const Row = ({ member, isCurrentLike = true, index }) => {
   const [isLike, setIsLike] = useState(isCurrentLike);
   const [isHoverSong, setIsHoverSong] = useState(false);
-
-  const calculateTime = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
-  };
 
   const handleInHoverSong = () => {
     setIsHoverSong(true);
@@ -40,103 +32,112 @@ const Row = ({ member, isCurrentLike = true }) => {
   return (
     <Tr
       _hover={{
-        backgroundColor: '#2a2a2a',
-        color: 'white',
-        transitionDuration: '0.6s',
-        transitionTimingFunction: 'ease-in-out',
+        backgroundColor: "rgba(255,255,255, 0.2)",
+        color: "white",
+        transitionDuration: "0.6s",
+        transitionTimingFunction: "ease-in-out",
       }}
-      _focus={{ backgroundColor: '#665e5b' }}
+      _focus={{ backgroundColor: "#665e5b" }}
       onMouseEnter={handleInHoverSong}
       onMouseLeave={handleOutHoverSong}
     >
+      <Td border="none" w="20px" px={0} textAlign="center" pl={2}>
+        {isHoverSong ? (
+          <Icon
+            boxSize="20px"
+            position="relative"
+            right="10px"
+            as={BsFillPlayFill}
+          ></Icon>
+        ) : (
+          <Text
+            position="relative"
+            mr="10px"
+            _hover={{ cursor: "context-menu" }}
+          >
+            {index}
+          </Text>
+        )}
+      </Td>
+
       <Td border="none">
         <HStack spacing="3">
-          {isHoverSong ? (
-            <Icon
-              boxSize="20px"
-              position="relative"
-              right="10px"
-              as={BsFillPlayFill}
-            ></Icon>
-          ) : (
-            <Text
-              position="relative"
-              mr="10px"
-              _hover={{ cursor: 'context-menu' }}
-            >
-              {member.id}
-            </Text>
-          )}
-
-          <Image name={member.name} src={member.avatarUrl} boxSize="10" />
+          <Image
+            name={member?.track?.name}
+            src={member?.track?.album?.images[0]?.url}
+            boxSize="10"
+          />
           <Box>
             <Text
               fontWeight="medium"
+              fontSize="16px"
               color="white"
               isTruncated
-              _hover={{ cursor: 'context-menu' }}
+              maxW="15vw"
+              _hover={{ cursor: "context-menu" }}
             >
-              {member.name}
+              {member?.track?.name}
             </Text>
-            <Text as={Link} p="0" isTruncated>
-              {member.handle}
+            <Text as={Link} p="0" isTruncated maxW="15vw">
+              {member?.track?.artists[0]?.name}
             </Text>
           </Box>
         </HStack>
       </Td>
 
       <Td border="none">
-        <Text as={Link} color="muted" isTruncated>
-          {member.email}
+        <Text as={Link} color="muted" isTruncated maxW="15vw">
+          {member?.track?.album?.name}
         </Text>
       </Td>
       <Td border="none">
         <Text color="muted" isTruncated>
-          {member.role}
+          {new Date("2000") > new Date(member?.added_at)
+            ? ""
+            : new Date(member?.added_at).toUTCString().slice(5, 16)}
         </Text>
       </Td>
-      <Td border="none">
-        <Flex width="90px" justify="center">
-          {isLike ? (
-            <Icon
-              as={HiHeart}
-              onClick={handleLike}
-              boxSize="20px"
-              color="green"
-              position="relative"
-              right="20px"
-            />
-          ) : isHoverSong ? (
-            <Icon
-              as={HiOutlineHeart}
-              onClick={handleLike}
-              boxSize="20px"
-              color="#D2CDCC"
-              position="relative"
-              right="20px"
-              _hover={{ color: '#fff' }}
-            />
-          ) : (
-            <></>
-          )}
-          <Text color="muted" _hover={{ cursor: 'context-menu' }} isTruncated>
-            {calculateTime(member.duration)}
-          </Text>
-          {isHoverSong ? (
-            <Icon
-              as={BsThreeDots}
-              boxSize="20px"
-              color="#D2CDCC"
-              position="relative"
-              left="10px"
-            />
-          ) : (
-            <></>
-          )}
-        </Flex>
+      <Td border="none" px={0} textAlign="center">
+        {isLike ? (
+          <Icon
+            as={HiHeart}
+            onClick={handleLike}
+            boxSize="20px"
+            color="#1DB954"
+          />
+        ) : isHoverSong ? (
+          <Icon
+            as={HiOutlineHeart}
+            onClick={handleLike}
+            boxSize="20px"
+            color="#D2CDCC"
+            position="relative"
+            right="20px"
+            _hover={{ color: "#fff" }}
+          />
+        ) : (
+          <></>
+        )}
+      </Td>
+      <Td border="none" px={0} textAlign="center">
+        <Text color="muted" _hover={{ cursor: "context-menu" }} isTruncated>
+          {milliSecondsToMinutes(member?.track?.duration_ms)}
+        </Text>
+      </Td>
+      <Td border="none" px={0} textAlign="center">
+        {isHoverSong ? (
+          <Icon
+            as={BsThreeDots}
+            boxSize="20px"
+            color="#D2CDCC"
+          />
+        ) : (
+          <></>
+        )}
       </Td>
     </Tr>
   );
 };
 
 export default Row;
+

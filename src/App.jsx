@@ -48,7 +48,7 @@ const RequireLoggedInUser = ({ children }) => {
             featuredPlaylists: featuredPlaylists,
           });
         });
-      spotify.getMySavedTracks().then((data) => {
+      spotify.getMySavedTracks({ limit: 50 }).then((data) => {
         dispatch({ type: "SAVED_TRACKS", savedTracks: data });
       });
 

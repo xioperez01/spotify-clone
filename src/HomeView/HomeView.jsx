@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -11,21 +11,22 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-} from '@chakra-ui/react';
-import { useDataLayerValue } from '../DataLayer';
-import CardType1 from '../Shared/Cards/CardType1';
-import { colorGenerate } from '../Shared/Functions/colorGenerator';
-import CardType2 from '../Shared/Cards/CardType2';
-import { spotify } from '../App';
-import SearchResultCard from '../Shared/Cards/SearchResult';
+} from "@chakra-ui/react";
+import { useDataLayerValue } from "../DataLayer";
+import CardType1 from "../Shared/Cards/CardType1";
+import { colorGenerate } from "../Shared/Functions/colorGenerator";
+import CardType2 from "../Shared/Cards/CardType2";
+import { spotify } from "../App";
 
 const HomeView = () => {
+
+
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
     useDataLayerValue();
   const [newMusic, setNewMusic] = useState({});
   const [idsList] = useState([]);
 
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState("");
 
   const fivePlaylists = playlists?.items?.sort(
     (a, b) => b?.tracks?.total - a?.tracks?.total
@@ -33,7 +34,7 @@ const HomeView = () => {
 
   useEffect(() => {
     spotify
-      .getNewReleases({ market: 'CO', limit: 10 })
+      .getNewReleases({ market: "CO", limit: 10 })
       .then((data) => setNewMusic(data.albums));
 
     spotify
@@ -44,7 +45,7 @@ const HomeView = () => {
       .then((data) => {
         const list = data.items
           .filter((i) => i.context)
-          .map((l) => l.context.href.split('/')[5]);
+          .map((l) => l.context.href.split("/")[5]);
 
         return [...new Set(list)];
       })
@@ -53,7 +54,7 @@ const HomeView = () => {
           spotify.getPlaylist(l).then((recentlyPlaylists) => {
             idsList.push({ ...recentlyPlaylists });
             dispatch({
-              type: 'SET_RECENTLY_PLAYLISTS',
+              type: "SET_RECENTLY_PLAYLISTS",
               recentlyPlaylists: idsList,
             });
           })
@@ -70,18 +71,10 @@ const HomeView = () => {
     md: 3,
     lg: 4,
     xl: 5,
-    '2xl': 7,
+    "2xl": 7,
   });
 
   const currentHour = new Date();
-
-  const item = {
-    image: {
-      url: 'https://media.istockphoto.com/photos/minimal-scene-of-sunglasses-and-headphone-on-human-head-sculpture-picture-id1328826336?b=1&k=20&m=1328826336&s=170667a&w=0&h=y1pSXfJkO0ZVQFCAU6sv6LtzcB8CmIIe89Ei2L0qJMQ=',
-    },
-    name: 'Electro House 2022',
-    description: 'LISTA',
-  };
 
   return (
     <Stack
@@ -105,30 +98,35 @@ const HomeView = () => {
       >
         <Heading color="white" fontSize="32px">
           {currentHour <= 12
-            ? '¡Buenos días!'
+            ? "¡Buenos días!"
             : currentHour.getHours() > 12 && currentHour.getHours() <= 18
-            ? '¡Buenas tardes!'
-            : '¡Buenas noches!'}
+            ? "¡Buenas tardes!"
+            : "¡Buenas noches!"}
         </Heading>
-
-        <SearchResultCard item={item} />
 
         <Grid
           w="100%"
           h="auto"
           mt={6}
-          templateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-          templateRows={{ base: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
+          templateColumns={{ base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+          templateRows={{ base: "repeat(3, 1fr)", lg: "repeat(2, 1fr)" }}
           gap={4}
         >
           <GridItem>
-            <CardType1 onChangeColor={handleChangeColor} />
+            <CardType1
+              onChangeColor={handleChangeColor}
+              id={"meSavedTracks"}
+            />
           </GridItem>
 
           {fivePlaylists?.map((list, index) =>
             index <= 4 ? (
               <GridItem key={list?.id}>
-                <CardType1 item={list} onChangeColor={handleChangeColor} />
+                <CardType1
+                  item={list}
+                  onChangeColor={handleChangeColor}
+                  id={list?.id}
+                />
               </GridItem>
             ) : (
               <></>
@@ -162,6 +160,7 @@ const HomeView = () => {
                   image={i?.images[0]?.url}
                   description={i?.description}
                   owner={i?.owner?.display_name}
+                  id={i?.id}
                 />
               </GridItem>
             ) : (
@@ -193,6 +192,7 @@ const HomeView = () => {
                   image={i?.images[0]?.url}
                   description={i?.description}
                   owner={i?.owner?.display_name}
+                  id={i?.id}
                 />
               </GridItem>
             ) : (
@@ -223,6 +223,7 @@ const HomeView = () => {
                   image={i?.images[0]?.url}
                   description={i?.description}
                   owner={i?.owner?.display_name}
+                  id={i?.id}
                 />
               </GridItem>
             ) : (
@@ -236,3 +237,4 @@ const HomeView = () => {
 };
 
 export default HomeView;
+

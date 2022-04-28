@@ -9,6 +9,7 @@ import { useDataLayerValue } from "../DataLayer";
 import { useHistory } from "react-router-dom";
 
 const SearchView = () => {
+  const history = useHistory();
   const [{ topCategories, allCategories }, dispatch] = useDataLayerValue();
 
   const categoriesIds = [
@@ -19,8 +20,6 @@ const SearchView = () => {
   ];
 
   const topCategoriesColors = ["#B49BC8", "#8D67AB", "#E61E32", "#F037A5"];
-
-  const history = useHistory();
 
   const handlePath = (id) => {
     history.push(`/genre/${id}`);
@@ -38,7 +37,20 @@ const SearchView = () => {
       });
   }, []);
 
-  return (
+  return !allCategories ? (
+    <Box
+      w="calc(100% - 240px)"
+      h="calc(100% -  90px)"
+      bgColor="#1D1D1D"
+      position="absolute"
+      top={0}
+      right={0}
+      overflowY="auto"
+      overflowX="hidden"
+      as="section"
+      pb={{ base: 4, lg: 8 }}
+    ></Box>
+  ) : (
     <Stack
       w="calc(100% - 240px)"
       h="calc(100% -  90px)"
