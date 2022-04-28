@@ -23,7 +23,7 @@ By connecting our application to the Spotify API, we can recreate functionalitie
 Here is a working live demo :
 
 ## App
-
+![](src/images/Inicio.png)
 	
 ## Technologies
 This project is created with:
