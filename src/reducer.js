@@ -11,6 +11,7 @@ export const initialState = {
   savedTracks: null,
   savedShows: null,
   followedArtists: null,
+  toSearch: null,
 };
 
 const reducer = (state, action) => {

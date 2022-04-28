@@ -34,9 +34,8 @@ const CardType1 = ({ item, onChangeColor, id }) => {
       _hover={{
         cursor: "pointer",
         backgroundColor: "rgba(255,255,255, 0.2)",
-        transitionDuration: "0.6s",
-        transitionTimingFunction: "ease-in-out",
       }}
+      transition="background-color 0.5s ease"
       onMouseEnter={() => {
         onToggle();
         item ? onChangeColor() : onChangeColor("51,12,170");

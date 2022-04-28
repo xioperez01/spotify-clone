@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { spotify } from "../App";
 import { useLocation } from "react-router-dom";
-import PlaylistTable from "../PlaylistTable/PlaylistTable";
+import PlaylistTable from "./PlaylistTable/PlaylistTable";
 import { useDataLayerValue } from "../DataLayer";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 

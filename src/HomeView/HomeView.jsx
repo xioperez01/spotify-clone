@@ -19,8 +19,6 @@ import CardType2 from "../Shared/Cards/CardType2";
 import { spotify } from "../App";
 
 const HomeView = () => {
-
-
   const [{ playlists, featuredPlaylists, recentlyPlaylists }, dispatch] =
     useDataLayerValue();
   const [newMusic, setNewMusic] = useState({});
@@ -80,11 +78,11 @@ const HomeView = () => {
     <Stack
       w="calc(100% - 240px)"
       h="calc(100% -  90px)"
-      bgColor="#1D1D1D"
+      bgColor="#121212"
       position="absolute"
       top={0}
       right={0}
-      overflowY="auto"
+      //overflowY="auto"
       overflowX="hidden"
       as="section"
       spacing={10}
@@ -94,7 +92,7 @@ const HomeView = () => {
         pt="80px"
         px={{ base: 4, lg: 8 }}
         bg={color}
-        transition="background 2s"
+        transition="background-color 0.3s ease"
       >
         <Heading color="white" fontSize="32px">
           {currentHour <= 12
@@ -113,10 +111,7 @@ const HomeView = () => {
           gap={4}
         >
           <GridItem>
-            <CardType1
-              onChangeColor={handleChangeColor}
-              id={"meSavedTracks"}
-            />
+            <CardType1 onChangeColor={handleChangeColor} id={"meSavedTracks"} />
           </GridItem>
 
           {fivePlaylists?.map((list, index) =>
