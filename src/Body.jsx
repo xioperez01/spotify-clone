@@ -12,8 +12,11 @@ import SearchView from "./SearchView/SearchView";
 import PodcastsView from "./LibraryView/PodcastsView";
 import ArtistsView from "./LibraryView/ArtistsView";
 import AlbumsView from "./LibraryView/AlbumsView";
+import GenreView from "./GenreView/GenreView";
+import { useLocation } from "react-router-dom";
 
 const Body = () => {
+  const { search } = useLocation();
   return (
     <Box maxWidth="100vw" height="100vh" minH="500px" p={0} overflowY="auto">
       <Sidebar />
@@ -21,7 +24,6 @@ const Body = () => {
       <Switch>
         <Redirect from="/" to={"/home"} exact />
         <Redirect from="/library" to={"/library/playlists"} exact />
-        <Redirect from="/" to={"/home"} exact />
 
         <Route exact path="/home">
           <HomeView />
@@ -40,6 +42,9 @@ const Body = () => {
         </Route>
         <Route exact path="/search">
           <SearchView />
+        </Route>
+        <Route to={"/genre/:id" + search}>
+          <GenreView />
         </Route>
       </Switch>
 

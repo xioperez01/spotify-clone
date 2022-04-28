@@ -28,9 +28,11 @@ import {
   MdOutlineClose,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Topbar = () => {
   const { pathname } = useLocation();
+  const { goBack, goForward } = useHistory();
 
   const [{ user }, dispatch] = useDataLayerValue();
 
@@ -93,6 +95,7 @@ const Topbar = () => {
             _hover={{ bgColor: "#190404" }}
             _active={{ bgColor: "#190404" }}
             icon={<MdOutlineArrowBackIos size={20} />}
+            onClick={goBack}
           />
           <IconButton
             size="sm"
@@ -102,6 +105,7 @@ const Topbar = () => {
             _hover={{ bgColor: "#190404" }}
             _active={{ bgColor: "#190404" }}
             icon={<MdOutlineArrowForwardIos size={20} />}
+            onClick={goForward}
           />
         </ButtonGroup>
         {pathname === "/search" ? (

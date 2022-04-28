@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useDataLayerValue } from '../DataLayer';
 import CardType1 from '../Shared/Cards/CardType1';
-import { colorGenerate } from '../Shared/Functions/changeBgColor';
+import { colorGenerate } from '../Shared/Functions/colorGenerator';
 import CardType2 from '../Shared/Cards/CardType2';
 import { spotify } from '../App';
 
