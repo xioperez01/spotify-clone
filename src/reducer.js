@@ -8,6 +8,10 @@ export const initialState = {
   recentlyPlaylists: [],
   topCategories: [],
   allCategories: null,
+  savedTracks: null,
+  savedShows: null,
+  followedArtists: null,
+  toSearch: null,
 };
 
 const reducer = (state, action) => {
@@ -46,6 +50,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         topCategories: action.topCategories,
+      };
+    case "SAVED_TRACKS":
+      return {
+        ...state,
+        savedTracks: action.savedTracks,
+      };
+    case "SAVED_SHOWS":
+      return {
+        ...state,
+        savedShows: action.savedShows,
+      };
+    case "FOLLOWED_ARTISTS":
+      return {
+        ...state,
+        followedArtists: action.followedArtists,
+      };
+    case "SAVED_ALBUMS":
+      return {
+        ...state,
+        savedAlbums: action.savedAlbums,
       };
     default:
       return state;

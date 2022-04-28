@@ -16,7 +16,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { useDataLayerValue } from "../DataLayer";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
@@ -27,20 +27,25 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineClose,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { debounce } from "lodash";
 
 const Topbar = () => {
+  const history = useHistory();
   const { pathname } = useLocation();
+  const { goBack, goForward } = useHistory();
 
   const [{ user }, dispatch] = useDataLayerValue();
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [toSearch, setToSearch] = React.useState("");
+  const [newSearch, setNewSearch] = React.useState("");
 
   const libraryMenu = [
-    { title: "Listas" },
-    { title: "Potcasts" },
-    { title: "Artistas" },
-    { title: "Álbumes" },
+    { title: "Listas", label: "/library/playlists" },
+    { title: "Potcasts", label: "/library/podcasts" },
+    { title: "Artistas", label: "/library/artists" },
+    { title: "Álbumes", label: "/library/albums" },
   ];
 
   const logOut = () => {
@@ -50,13 +55,15 @@ const Topbar = () => {
     });
   };
 
+  const handlePath = (newSearch) => {
+    history.push(`/search/${newSearch}`);
+  };
+
   const handleSearch = () => {
     if (document.getElementById("toSearch")) {
       if (document.getElementById("toSearch").value) {
         let trim = document.getElementById("toSearch").value.trim();
-
-        const tmp = new RegExp(trim, "i");
-        setToSearch(tmp);
+        handlePath(trim);
       }
     }
   };
@@ -64,9 +71,12 @@ const Topbar = () => {
   const handleClearSearch = () => {
     if (document.getElementById("toSearch")) {
       document.getElementById("toSearch").value = "";
-      setToSearch("");
+      setNewSearch("");
+      history.push("/search/");
     }
   };
+
+  const debouncedChangeHandler = useCallback(debounce(handleSearch, 500), []);
 
   return (
     <Flex
@@ -92,6 +102,7 @@ const Topbar = () => {
             _hover={{ bgColor: "#190404" }}
             _active={{ bgColor: "#190404" }}
             icon={<MdOutlineArrowBackIos size={20} />}
+            onClick={goBack}
           />
           <IconButton
             size="sm"
@@ -101,9 +112,10 @@ const Topbar = () => {
             _hover={{ bgColor: "#190404" }}
             _active={{ bgColor: "#190404" }}
             icon={<MdOutlineArrowForwardIos size={20} />}
+            onClick={goForward}
           />
         </ButtonGroup>
-        {pathname === "/search" ? (
+        {pathname.includes("/search") ? (
           <InputGroup w="360px">
             <InputLeftElement
               pointerEvents="none"
@@ -119,10 +131,12 @@ const Topbar = () => {
               rounded="full"
               _focus={{ border: "none" }}
               _placeholder={{ color: "#757575", fontSize: "14px" }}
-              onChange={handleSearch}
+              onChange={(e) => {
+                debouncedChangeHandler(e);
+              }}
               autoComplete="off"
             />
-            {toSearch !== "" ? (
+            {newSearch !== "" ? (
               <InputRightElement
                 children={
                   <MdOutlineClose
@@ -136,20 +150,22 @@ const Topbar = () => {
               <></>
             )}
           </InputGroup>
-        ) : pathname === "/library" ? (
+        ) : pathname.includes("/library") ? (
           <ButtonGroup color="white">
             {libraryMenu.map((i) => (
-              <Button
-                key={i.title}
-                bgColor="transparent"
-                fontSize="sm"
-                fontWeight="bold"
-                _focus={{ border: "none", bgColor: "#3e3e3e" }}
-                _active={{ bgColor: "#3e3e3e" }}
-                _hover={{}}
-              >
-                {i.title}
-              </Button>
+              <Link to={i.label}>
+                <Button
+                  key={i.title}
+                  bgColor="transparent"
+                  fontSize="sm"
+                  fontWeight="bold"
+                  _focus={{ border: "none", bgColor: "#3e3e3e" }}
+                  _active={{ bgColor: "#3e3e3e" }}
+                  _hover={{}}
+                >
+                  {i.title}
+                </Button>
+              </Link>
             ))}
           </ButtonGroup>
         ) : (

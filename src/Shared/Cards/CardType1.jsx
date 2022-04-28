@@ -10,9 +10,15 @@ import {
 } from "@chakra-ui/react";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsFillSuitHeartFill } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
-const CardType1 = ({ item, onChangeColor }) => {
+const CardType1 = ({ item, onChangeColor, id }) => {
+  const history = useHistory();
   const { isOpen, onToggle } = useDisclosure();
+
+  const handlePath = () => {
+    history.push(`/playlist/${id}`);
+  };
 
   return (
     <Flex
@@ -28,14 +34,14 @@ const CardType1 = ({ item, onChangeColor }) => {
       _hover={{
         cursor: "pointer",
         backgroundColor: "rgba(255,255,255, 0.2)",
-        transitionDuration: "0.6s",
-        transitionTimingFunction: "ease-in-out",
       }}
+      transition="background-color 0.5s ease"
       onMouseEnter={() => {
         onToggle();
         item ? onChangeColor() : onChangeColor("51,12,170");
       }}
       onMouseLeave={onToggle}
+      onClick={handlePath}
     >
       {item ? (
         <Image
@@ -63,12 +69,8 @@ const CardType1 = ({ item, onChangeColor }) => {
         justifyContent="space-between"
         px={{ base: 2, lg: 4 }}
       >
-        <Text
-          fontWeight="bold"
-          maxW="calc(100% - 45px)"
-          noOfLines={2}
-        >
-          {item ? item.name : "Canciones que te gustan"}
+        <Text fontWeight="bold" maxW="calc(100% - 45px)" noOfLines={2}>
+          {item ? item?.name : "Canciones que te gustan"}
         </Text>
         <ScaleFade initialScale={0.9} in={isOpen}>
           <Icon
