@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, HStack, Icon, Image, Link, Box } from "@chakra-ui/react";
+import { Flex, HStack, Icon, Image, Link } from "@chakra-ui/react";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { IoMdMicrophone } from "react-icons/io";
 import { BsList, BsArrowsAngleExpand } from "react-icons/bs";
