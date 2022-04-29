@@ -67,8 +67,19 @@ const RequireLoggedInUser = ({ children }) => {
       spotify.getMySavedAlbums().then((data) => {
         dispatch({ type: "SAVED_ALBUMS", savedAlbums: data });
       });
+
+      spotify.getMyCurrentPlayingTrack().then((track) => {
+        dispatch({
+          type: "SET_CURRENT_PLAYING",
+          currentPlayingTrack: track,
+        });
+        dispatch({
+          type: "SET_PLAYING",
+          isPlaying: track.is_playing,
+        });
+      });
     }
-  });
+  }, [token, dispatch, initialState]);
 
   return !token ? <Login /> : children;
 };

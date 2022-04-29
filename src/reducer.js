@@ -12,6 +12,9 @@ export const initialState = {
   savedShows: null,
   followedArtists: null,
   toSearch: null,
+  currentPlayingTrack: null,
+  isPlaying: false,
+  currentPlayingPlaylist: null,
 };
 
 const reducer = (state, action) => {
@@ -71,6 +74,23 @@ const reducer = (state, action) => {
         ...state,
         savedAlbums: action.savedAlbums,
       };
+    case "SET_CURRENT_PLAYING":
+      return {
+        ...state,
+        currentPlayingTrack: action.currentPlayingTrack,
+      };
+    case "SET_PLAYING":
+      return {
+        ...state,
+        isPlaying: action.isPlaying,
+      };
+
+    case "SET_PLAYING_PLAYLIST":
+      return {
+        ...state,
+        currentPlayingPlaylist: action.currentPlayingPlaylist,
+      };
+
     default:
       return state;
   }

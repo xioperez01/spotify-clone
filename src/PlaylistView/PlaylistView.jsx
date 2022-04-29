@@ -163,8 +163,11 @@ const PlaylistView = () => {
         }
       >
         <PlaylistTable
-          isOwn={user?.display_name === playList?.owner?.display_name}
+          isOwn={
+            user?.display_name === playList?.owner?.display_name || isMeLike
+          }
           items={isMeLike ? savedTracks?.items : tracks?.items}
+          id={id}
         />
       </Box>
     </Box>

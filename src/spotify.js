@@ -13,6 +13,7 @@ const scopes = [
   "user-follow-read",
   "playlist-read-collaborative",
   "playlist-read-private",
+  "app-remote-control",
 ];
 
 export const getTokenFromResponse = () => {
