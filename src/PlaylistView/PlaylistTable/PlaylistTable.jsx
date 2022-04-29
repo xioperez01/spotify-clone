@@ -4,25 +4,30 @@ import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { MdOutlinePauseCircleFilled, MdPlayCircleFilled } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import MemberTable from "./MemberTable";
+import { useDataLayerValue } from "../../DataLayer";
+import {
+  pauseTrack,
+  playPlaylist,
+} from "../../Shared/Functions/SpotifyFunctions";
 
-const PlaylistTable = ({ isOwn, items }) => {
+const PlaylistTable = ({ id, isOwn, items }) => {
+  const [{ isPlaying, currentPlayingPlaylist }, dispatch] = useDataLayerValue();
+  console.log(currentPlayingPlaylist);
   const [like, setLike] = useState(false);
-  const [isPlay, setIsPlay] = useState(false);
 
   const handleLike = () => {
     setLike(!like);
-  };
-  const handlePlay = () => {
-    setIsPlay(!isPlay);
   };
 
   return (
     <Container maxW="100%" px={{ base: 4, lg: 8 }} w="100%">
       <HStack align="center" spacing={4} py={4}>
-        {isPlay ? (
+        {isPlaying ? (
           <Icon
             as={MdOutlinePauseCircleFilled}
-            onClick={handlePlay}
+            onClick={() => {
+              pauseTrack(dispatch);
+            }}
             color="#1DB954"
             borderColor="#1DB954"
             boxSize="65px"
@@ -34,16 +39,18 @@ const PlaylistTable = ({ isOwn, items }) => {
         ) : (
           <Icon
             as={MdPlayCircleFilled}
-            onClick={handlePlay}
             color="#1DB954"
             boxSize="65px"
             _hover={{
               transform: "scale(1.1)",
               transitionDuration: "0.3s",
             }}
+            onClick={() => {
+              playPlaylist(id, dispatch);
+            }}
           />
         )}
-        {!isOwn ? (
+        {!isOwn || id !== "meSavedTracks" ? (
           like ? (
             <Icon
               as={HiHeart}

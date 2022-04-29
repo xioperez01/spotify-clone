@@ -17,6 +17,7 @@ import PlaylistView from "./PlaylistView/PlaylistView";
 import SearchResultView from "./SearchView/SearchResultView";
 
 const Body = () => {
+  
   return (
     <Box
       maxWidth="100vw"
