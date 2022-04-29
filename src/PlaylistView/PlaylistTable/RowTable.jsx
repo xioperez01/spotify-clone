@@ -5,8 +5,11 @@ import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { milliSecondsToMinutes } from "../../Shared/Functions/secondsToMinutes";
 import { useDataLayerValue } from "../../DataLayer";
 import { playTrack } from "../../Shared/Functions/SpotifyFunctions";
+import { useLocation } from "react-router-dom";
 
-const Row = ({ member, isCurrentLike = true, index }) => {
+const Row = ({ member, isCurrentLike = false, index }) => {
+  const { pathname } = useLocation();
+  const isOwn = pathname.split("/")[2] === "meSavedTracks";
   const [{ isPlaying, currentPlayingTrack }, dispatch] = useDataLayerValue();
   const [isLike, setIsLike] = useState(isCurrentLike);
   const [isHoverSong, setIsHoverSong] = useState(false);
@@ -97,7 +100,7 @@ const Row = ({ member, isCurrentLike = true, index }) => {
         </Text>
       </Td>
       <Td border="none" px={0} textAlign="center">
-        {isLike ? (
+        {isLike || isOwn ? (
           <Icon
             as={HiHeart}
             onClick={handleLike}

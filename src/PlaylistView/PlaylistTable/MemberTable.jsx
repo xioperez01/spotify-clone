@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Icon,
-  Table,
-  Tbody,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Icon, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { BiTime } from "react-icons/bi";
 import Row from "./RowTable";
 

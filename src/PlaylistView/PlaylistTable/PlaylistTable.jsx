@@ -12,7 +12,6 @@ import {
 
 const PlaylistTable = ({ id, isOwn, items }) => {
   const [{ isPlaying, currentPlayingPlaylist }, dispatch] = useDataLayerValue();
-  console.log(currentPlayingPlaylist);
   const [like, setLike] = useState(false);
 
   const handleLike = () => {
