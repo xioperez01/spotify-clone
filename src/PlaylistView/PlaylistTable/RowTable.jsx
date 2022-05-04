@@ -3,8 +3,14 @@ import { Box, HStack, Icon, Image, Td, Text, Tr, Link } from "@chakra-ui/react";
 import { BsThreeDots, BsFillPlayFill } from "react-icons/bs";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 import { milliSecondsToMinutes } from "../../Shared/Functions/secondsToMinutes";
+import { useDataLayerValue } from "../../DataLayer";
+import { playTrack } from "../../Shared/Functions/SpotifyFunctions";
+import { useLocation } from "react-router-dom";
 
-const Row = ({ member, isCurrentLike = true, index }) => {
+const Row = ({ member, isCurrentLike = false, index }) => {
+  const { pathname } = useLocation();
+  const isOwn = pathname.split("/")[2] === "meSavedTracks";
+  const [{ isPlaying, currentPlayingTrack }, dispatch] = useDataLayerValue();
   const [isLike, setIsLike] = useState(isCurrentLike);
   const [isHoverSong, setIsHoverSong] = useState(false);
 
@@ -26,10 +32,16 @@ const Row = ({ member, isCurrentLike = true, index }) => {
         backgroundColor: "rgba(255,255,255, 0.2)",
         color: "white",
       }}
+      bgColor={
+        isPlaying && currentPlayingTrack?.item?.id === member?.track?.id
+          ? "rgba(255,255,255, 0.2)"
+          : "transparent"
+      }
       _focus={{ backgroundColor: "#665e5b" }}
       onMouseEnter={handleInHoverSong}
       onMouseLeave={handleOutHoverSong}
       transition="background-color 0.5s ease"
+      onDoubleClick={() => playTrack(member?.track?.id, dispatch)}
     >
       <Td border="none" w="20px" px={0} textAlign="center" pl={2}>
         {isHoverSong ? (
@@ -88,7 +100,7 @@ const Row = ({ member, isCurrentLike = true, index }) => {
         </Text>
       </Td>
       <Td border="none" px={0} textAlign="center">
-        {isLike ? (
+        {isLike || isOwn ? (
           <Icon
             as={HiHeart}
             onClick={handleLike}
