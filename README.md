@@ -50,4 +50,5 @@ $ npm start
 * **Martin Corredor** - [martincorredor](https://github.com/martincorredor)
 
 ## [License](https://github.com/xioperez01/spotify-clone/blob/main/LICENSE)
+
 MIT © [Angie Perez](https://github.com/xioperez01),  [Martin Corredor](https://github.com/martincorredor)
