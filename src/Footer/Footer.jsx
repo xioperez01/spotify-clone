@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import { Flex, HStack, Icon, Image, Link } from "@chakra-ui/react";
-import { HiOutlineHeart, HiHeart } from "react-icons/hi";
-import { IoMdMicrophone } from "react-icons/io";
-import { BsList, BsArrowsAngleExpand } from "react-icons/bs";
-import { MdDevices } from "react-icons/md";
-import { BiVolumeLow } from "react-icons/bi";
+import React, { useState, useEffect } from 'react';
+import { Flex, HStack, Icon, Image, Link } from '@chakra-ui/react';
+import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
+import { IoMdMicrophone } from 'react-icons/io';
+import { BsList, BsArrowsAngleExpand } from 'react-icons/bs';
+import { MdDevices } from 'react-icons/md';
+import { BiVolumeLow } from 'react-icons/bi';
 import {
   BsPlayCircleFill,
   BsPauseCircleFill,
   BsFillSkipStartFill,
   BsFillSkipEndFill,
   BsArrowRepeat,
-} from "react-icons/bs";
-import { TiArrowShuffle } from "react-icons/ti";
+} from 'react-icons/bs';
+import { TiArrowShuffle } from 'react-icons/ti';
 
-import "./Styles/Footer.css";
-import { useDataLayerValue } from "../DataLayer";
+import './Styles/Footer.css';
+import { useDataLayerValue } from '../DataLayer';
 import {
   nexTrack,
   pauseTrack,
   playTrack,
   prevTrack,
-} from "../Shared/Functions/SpotifyFunctions";
+} from '../Shared/Functions/SpotifyFunctions';
+import { spotify } from '../App';
 
 const Footer = () => {
-  const [{ isPlaying, currentPlayingTrack }, dispatch] = useDataLayerValue();
+  const [{ isPlaying, currentPlayingTrack, recentlyPlayed }, dispatch] = useDataLayerValue();
 
   const [like, setLike] = useState(false);
 
@@ -32,9 +33,12 @@ const Footer = () => {
     setLike(!like);
   };
 
+
+  console.log("current:",currentPlayingTrack)
+  console.log("recently", recentlyPlayed)
   return (
     <>
-      {currentPlayingTrack ? (
+      {recentlyPlayed ? (
         <HStack
           spacing="auto"
           bg="#282828"
@@ -67,7 +71,7 @@ const Footer = () => {
               <Link fontSize="xs" color="#D2CDCC" isTruncated maxW="">
                 {currentPlayingTrack?.item?.artists
                   .map((a) => a?.name)
-                  .join(", ")}
+                  .join(', ')}
               </Link>
             </Flex>
             <HStack onClick={handleClick} h="20px" margin="auto 16px">
@@ -84,7 +88,7 @@ const Footer = () => {
                   justify="center"
                   boxSize={5}
                   color="#D2CDCC"
-                  _hover={{ color: "#fff" }}
+                  _hover={{ color: '#fff' }}
                 />
               )}
             </HStack>
@@ -102,7 +106,7 @@ const Footer = () => {
             {isPlaying ? (
               <Icon
                 boxSize="32px"
-                _hover={{ transform: "scale(1.05)" }}
+                _hover={{ transform: 'scale(1.05)' }}
                 transition="all 0.3 ease"
                 as={BsPauseCircleFill}
                 onClick={() => {
@@ -112,11 +116,11 @@ const Footer = () => {
             ) : (
               <Icon
                 boxSize="32px"
-                _hover={{ transform: "scale(1.05)" }}
+                _hover={{ transform: 'scale(1.05)' }}
                 transition="all 0.3s ease"
                 as={BsPlayCircleFill}
                 onClick={() => {
-                  playTrack("", dispatch);
+                  playTrack('', dispatch);
                 }}
               />
             )}
@@ -185,4 +189,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
