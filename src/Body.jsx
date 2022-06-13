@@ -31,6 +31,7 @@ const Body = () => {
       <Topbar />
       <Switch>
         <Redirect from="/" to={"/home"} exact />
+        <Redirect from="/spotify-clone/#" to={"/home"} exact />
         <Redirect from="/library" to={"/library/playlists"} exact />
         <Redirect from="/you_like" to={"/playlist/meSavedTracks"} exact />
 
